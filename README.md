@@ -1,4 +1,4 @@
-# Proiect TW - echipa Spider Webs
+# Proiect TW - echipa Spider Webs - grupa 1091E
 # Anonymous grading
 # Proiect tehnologii web -> Tarba Sabin si Stoica Oana Larisa 1091E
 
@@ -24,5 +24,14 @@ Student:
 
 
 
+Steps:
+1. Descrierea sistemului si a functionalitatilor
+2. Proiectarea bazei de date
+3. Creare serviciilor REST
+4. Conectarea logica a serviciilor REST
+5. Testarea serviciilor REST (js unit tests)
+6. Creare design-ului pentru frontend
+7. Crearea interfetei
+8. Testing
 
 
