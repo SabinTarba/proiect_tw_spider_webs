@@ -1,0 +1,6 @@
+-- PROFESOR$
+insert into profesor$(last_name, first_name, email, password) VALUES ('Tarba', 'Sabin', 'sabintarba01@gmail.com', 'parola mea');
+insert into profesor$(last_name, first_name, email, password) VALUES ('Stoica', 'Oana', 'stoicaoan@gmail.com', 'parola oana');
+insert into profesor$(last_name, first_name, email, password) VALUES ('Ionescu', 'Vlad', 'vladionescu@gmail.com', '321dsaasda');
+insert into profesor$(last_name, first_name, email, password) VALUES ('Popescu', 'Maria', 'popescumaria@gmail.com', '32123m1dasdesd#@!#aa');
+insert into profesor$(last_name, first_name, email, password) VALUES ('Marinescu', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!EDSA#@1');
