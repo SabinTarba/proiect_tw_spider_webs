@@ -22,7 +22,7 @@ Student:
 - poate deveni in mod aleator jurat pentru un alt proiect:
                   -> poate adauga / modifica doar notele personale pentru un anumit livrabil al unui proiect (unde este in juriu) pe o perioada de timp definita de sistem
 
-
+Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
 Steps:
 1. Descrierea sistemului si a functionalitatilor
