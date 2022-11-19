@@ -41,7 +41,7 @@ Entities
 
 <u>Profesor</u>
 BASE_API_URL: localhost:8080/professors <br>
-<strong>POST</strong> request -> BASE_API_URL -> save a professor 
+<strong style="color: green">POST</strong> request -> BASE_API_URL -> save a professor 
 GET request -> BASE_API_URL -> get all professors 
 GET request -> BASE_API_URL/:id -> get a professor by id
 DELETE request -> BASE_API_URL/:id -> delete a professor by id
