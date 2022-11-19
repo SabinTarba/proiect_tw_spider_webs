@@ -3,4 +3,4 @@ insert into profesors(lastName, firstName, email, password) VALUES ('Tarba', 'Sa
 insert into profesors(lastName, firstName, email, password) VALUES ('Stoica', 'Oana', 'stoicaoan@gmail.com', 'parola oana');
 insert into profesors(lastName, firstName, email, password) VALUES ('Ionescu', 'Vlad', 'vladionescu@gmail.com', '321dsaasda');
 insert into profesors(lastName, firstName, email, password) VALUES ('Popescu', 'Maria', 'popescumaria@gmail.com', '32123m1dasdesd#@!#aa');
-insert into profesors(lastName, firstName, email, password) VALUES ('Marinache', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!EDSA#@1');
+insert into profesors(lastName, firstName, email, password) VALUES ('Marinache', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!E#@1');
