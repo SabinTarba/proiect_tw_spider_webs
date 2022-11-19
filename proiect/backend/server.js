@@ -118,6 +118,20 @@ app.put(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
     }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE ON update" }));
 })
 
+app.get(`/${STUDENT_API_BASE_PATH}/series/:series`, (req, res) => {
+    const series = req.params.series;
+
+    Student.findAll({ where: { series: series } }).then((students) => res.send(students));
+
+})
+
+app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, (req, res) => {
+    const class_ = req.params.class;
+
+    Student.findAll({ where: { class: class_ } }).then((students) => res.send(students));
+
+})
+
 
 
 
