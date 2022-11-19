@@ -34,15 +34,15 @@ Steps:
 
 
 # API documentation
-SERVER: localhost
-PORT: 8080
+```SERVER: localhost```
+```PORT: 8080```
 
 <strong><u>Entities</strong></u>
 
 <u><strong>Profesor</strong></u> <br>
 BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
-<strong>```diff +POST```</strong> request -> BASE_API_URL -> save a professor <br> 
-<strong>GET</strong> request -> BASE_API_URL -> get all professors <br>
-<strong>GET</strong> request -> BASE_API_URL/:id -> get a professor by id <br>
-<strong>DELETE</strong> request -> BASE_API_URL/:id -> delete a professor by id <br>
-<strong>PUT</strong> request -> BASE_API_URL/:id -> modify an existing professor <br>
+<strong>```POST```</strong> request -> BASE_API_URL -> save a professor <br> 
+<strong>```GET```</strong> request -> BASE_API_URL -> get all professors <br>
+<strong>```GET```</strong> request -> BASE_API_URL/:id -> get a professor by id <br>
+<strong>```DELETE```</strong> request -> BASE_API_URL/:id -> delete a professor by id <br>
+<strong>```PUT```</strong> request -> BASE_API_URL/:id -> modify an existing professor <br>
