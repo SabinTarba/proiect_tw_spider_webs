@@ -1,6 +1,6 @@
--- PROFESORS
-insert into profesors(lastName, firstName, email, password) VALUES ('Tarba', 'Sabin', 'sabintarba01@gmail.com', 'parola mea');
-insert into profesors(lastName, firstName, email, password) VALUES ('Stoica', 'Oana', 'stoicaoan@gmail.com', 'parola oana');
-insert into profesors(lastName, firstName, email, password) VALUES ('Ionescu', 'Vlad', 'vladionescu@gmail.com', '321dsaasda');
-insert into profesors(lastName, firstName, email, password) VALUES ('Popescu', 'Maria', 'popescumaria@gmail.com', '32123m1dasdesd#@!#aa');
-insert into profesors(lastName, firstName, email, password) VALUES ('Marinache', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!E#@1');
+-- PROFESSORS
+insert into professors(lastName, firstName, email, password) VALUES ('Tarba', 'Sabin', 'sabintarba01@gmail.com', 'parola mea');
+insert into professors(lastName, firstName, email, password) VALUES ('Stoica', 'Oana', 'stoicaoan@gmail.com', 'parola oana');
+insert into professors(lastName, firstName, email, password) VALUES ('Ionescu', 'Vlad', 'vladionescu@gmail.com', '321dsaasda');
+insert into professors(lastName, firstName, email, password) VALUES ('Popescu', 'Maria', 'popescumaria@gmail.com', '32123m1dasdesd#@!#aa');
+insert into professors(lastName, firstName, email, password) VALUES ('Marinache', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!E#@1');

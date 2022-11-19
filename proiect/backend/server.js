@@ -1,5 +1,5 @@
 import express from 'express';
-import { Profesor } from './entity/Profesor.js';
+import { Professor } from './entity/Professor.js';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -8,28 +8,28 @@ app.use(bodyParser.json());
 
 
 /*
-   API -> Entity: PROFESOR
+   API -> Entity: Professor
 */
 
-const PROFESOR_API_PATH = 'profesori';
+const PROFESSOR_API_BASE_PATH = 'professors';
 
-app.get(`/${PROFESOR_API_PATH}`, (req, res) => {
+app.get(`/${PROFESSOR_API_BASE_PATH}`, (req, res) => {
 
-    Profesor.findAll().then((data) => res.send(data));
+    Professor.findAll().then((data) => res.send(data));
 
 })
 
-app.get(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
+app.get(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
 
-    Profesor.findByPk(id).then((data) => data != null ? res.send(data) : res.send({ status: "No data found!" }));
+    Professor.findByPk(id).then((data) => data != null ? res.send(data) : res.send({ status: "No data found!" }));
 })
 
-app.delete(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
+app.delete(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Profesor.destroy({
+    Professor.destroy({
         where: {
             id: id
         }
@@ -38,15 +38,15 @@ app.delete(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
 })
 
 
-app.post(`/${PROFESOR_API_PATH}`, (req, res) => {
-    Profesor.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+app.post(`/${PROFESSOR_API_BASE_PATH}`, (req, res) => {
+    Professor.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
 })
 
 
-app.put(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
+app.put(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Profesor.update(req.body, {
+    Professor.update(req.body, {
         where: {
             id: id
         }
