@@ -42,6 +42,8 @@ Steps:
 BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_API_URL -> get all professors <br>
-<strong>```GET```</strong> request -> BASE_API_URL/:id -> get a professor by id <br>
-<strong>```DELETE```</strong> request -> BASE_API_URL/:id -> delete a professor by id <br>
-<strong>```PUT```</strong> request -> BASE_API_URL/:id -> modify an existing professor <br>
+<strong>```GET```</strong> request -> BASE_API_URL/students -> get all professors and their students <br>
+<strong>```GET```</strong> request -> BASE_API_URL/```:id``` -> get a professor by id <br>
+<strong>```GET```</strong> request -> BASE_API_URL/```:id```/students -> get the professor with specified id and the list of his students <br>
+<strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a professor by id <br>
+<strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing professor <br>
