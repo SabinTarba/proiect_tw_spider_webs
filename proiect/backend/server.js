@@ -38,7 +38,7 @@ app.delete(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
 
 
 app.post(`/${PROFESOR_API_PATH}`, (req, res) => {
-    Profesor.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+    Profesor.create(req.body).then(() => res.send({ status: "SUCCEss" })).catch(() => res.send({ status: "FAILURE" }));
 })
 
 
