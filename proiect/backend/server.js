@@ -1,6 +1,6 @@
 import express from 'express';
 import { Professor } from './entity/Professor.js';
-import { Student  } from './entity/Student.js';
+import { Student } from './entity/Student.js';
 import bodyParser from 'body-parser';
 
 const app = express();
@@ -18,6 +18,12 @@ app.get(`/${PROFESSOR_API_BASE_PATH}`, (req, res) => {
 
     Professor.findAll().then((data) => res.send(data));
 
+})
+
+app.get(`/${PROFESSOR_API_BASE_PATH}/students`, (req, res) => {
+    Professor.findAll({ include: { model: Student } }).then((professorsStudents) => {
+        res.send(professorsStudents);
+    })
 })
 
 app.get(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
@@ -54,6 +60,17 @@ app.put(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
 })
 
+
+app.get(`/${PROFESSOR_API_BASE_PATH}/:id/students`, (req, res) => {
+
+    const id = req.params.id;
+
+    Professor.findByPk(id, { include: [{ model: Student }] }).then((professorStudents) => {
+        res.send(professorStudents);
+    });
+})
+
+
 /*
    API -> Entity: Student
 */
@@ -75,30 +92,30 @@ app.get(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
 
 
 app.delete(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
-   const id = req.params.id;
+    const id = req.params.id;
 
-   Student.destroy({
-       where: {
-           id: id
-       }
-   })
-       .then((data) => res.send({ rowsAffected: data }));
+    Student.destroy({
+        where: {
+            id: id
+        }
+    })
+        .then((data) => res.send({ rowsAffected: data }));
 })
 
 
 app.post(`/${STUDENT_API_BASE_PATH}`, (req, res) => {
-   Student.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+    Student.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
 })
 
 
 app.put(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
-   const id = req.params.id;
+    const id = req.params.id;
 
-   Student.update(req.body, {
-       where: {
-           id: id
-       }
-   }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE ON update" }));
+    Student.update(req.body, {
+        where: {
+            id: id
+        }
+    }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE ON update" }));
 })
 
 

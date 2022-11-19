@@ -1,4 +1,5 @@
 import { Sequelize, Model, DataTypes } from 'sequelize';
+import { Professor } from './Professor.js';
 
 
 const sequelize = new Sequelize({
@@ -48,4 +49,3 @@ export const Student = sequelize.define('student', {
     }
 );
 
-Student.sync();

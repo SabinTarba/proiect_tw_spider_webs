@@ -1,4 +1,5 @@
-import { Sequelize, Model, DataTypes } from 'sequelize';
+import { Sequelize, DataTypes } from 'sequelize';
+import { Student } from './Student.js';
 
 
 const sequelize = new Sequelize({
@@ -39,4 +40,9 @@ export const Professor = sequelize.define('professor', {
     }
 );
 
-sequelize.sync();
+
+Professor.hasMany(Student);
+Student.belongsTo(Professor);
+
+Professor.sync();
+Student.sync();
