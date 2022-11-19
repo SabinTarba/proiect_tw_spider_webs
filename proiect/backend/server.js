@@ -22,7 +22,8 @@ app.get(`/${PROFESOR_API_PATH}`, (req, res) => {
 app.get(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Profesor.findByPk(id).then((data) => res.send(data));
+
+    Profesor.findByPk(id).then((data) => data != null ? res.send(data) : res.send({ status: "No data found!" }));
 })
 
 app.delete(`/${PROFESOR_API_PATH}/:id`, (req, res) => {
