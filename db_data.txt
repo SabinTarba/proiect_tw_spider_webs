@@ -4,3 +4,12 @@ insert into professors(lastName, firstName, email, password) VALUES ('Stoica', '
 insert into professors(lastName, firstName, email, password) VALUES ('Ionescu', 'Vlad', 'vladionescu@gmail.com', '321dsaasda');
 insert into professors(lastName, firstName, email, password) VALUES ('Popescu', 'Maria', 'popescumaria@gmail.com', '32123m1dasdesd#@!#aa');
 insert into professors(lastName, firstName, email, password) VALUES ('Marinache', 'Daniela', 'marinescudaniela@gmail.com', 'dsas321#@!E#@1');
+
+--STUDENTS
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Tarba', 'Sabin', 'sabintarba01stud@gmail.com', 'parolamea 2', '1091', 'E');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Stoica', 'Oana', 'stoicaoanastud@gmail.com', 'parola Studoana','1091', 'E');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Davidescu', 'Maria', 'davidescumariastud@gmail.com', 'studemyjde', '1078', 'C');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Popescu', 'Alina', 'popescualinastud@gmail.com', 'oslkc#@!a','1031', 'B');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Toma', 'Laurentiu', 'tomalaurentiustud@gmail.com', 'oparolafoartebunajij1','1024', 'D');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Mihalache', 'Andrei', 'mihalacheandreitud@gmail.com', 'parolastudMiha','1092', 'C');
+insert into students(lastName, firstName, email, password, class, series) VALUES ('Rusu', 'Andreea', 'rusuandreeastud@gmail.com', 'parolarusuStuddn','1089', 'E');
