@@ -40,7 +40,7 @@ PORT: 8080
 Entities
 
 <u>Profesor</u>
-BASE_API_URL: localhost:8080/professors
+BASE_API_URL: localhost:8080/professors <br>
 <strong>POST</strong> request -> BASE_API_URL -> save a professor 
 GET request -> BASE_API_URL -> get all professors 
 GET request -> BASE_API_URL/:id -> get a professor by id
