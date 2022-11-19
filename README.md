@@ -39,10 +39,10 @@ PORT: 8080
 
 Entities
 
-<u>Profesor</u>
+<u><strong>Profesor</strong></u>
 BASE_API_URL: localhost:8080/professors <br>
-<strong style="color: green">POST</strong> request -> BASE_API_URL -> save a professor 
-GET request -> BASE_API_URL -> get all professors 
-GET request -> BASE_API_URL/:id -> get a professor by id
-DELETE request -> BASE_API_URL/:id -> delete a professor by id
-PUT request -> BASE_API_URL/:id -> modify an existing professor
+<strong>POST</strong> request -> BASE_API_URL -> save a professor <br> 
+<strong>GET</strong> request -> BASE_API_URL -> get all professors <br>
+<strong>GET</strong> request -> BASE_API_URL/:id -> get a professor by id <br>
+<strong>DELETE</strong> request -> BASE_API_URL/:id -> delete a professor by id <br>
+<strong>PUT</strong> request -> BASE_API_URL/:id -> modify an existing professor <br>
