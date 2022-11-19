@@ -37,9 +37,8 @@ Steps:
 ```SERVER: localhost```
 ```PORT: 8080```
 
-<strong><u>Entities</strong></u>
 
-<u><strong>Profesor</strong></u> <br>
+<u><strong>Profesor</strong></u> <br><br>
 BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_API_URL -> get all professors <br>
