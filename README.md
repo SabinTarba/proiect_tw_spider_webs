@@ -38,7 +38,7 @@ Steps:
 ```PORT: 8080```
 
 
-<u><strong>Profesor</strong></u> <br><br>
+<u><strong>Professor</strong></u> <br><br>
 BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_API_URL -> get all professors <br>
