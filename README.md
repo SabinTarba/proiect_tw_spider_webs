@@ -41,7 +41,7 @@ PORT: 8080
 
 <u><strong>Profesor</strong></u> <br>
 BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
-<strong>+ POST +</strong> request -> BASE_API_URL -> save a professor <br> 
+<strong>+POST+</strong> request -> BASE_API_URL -> save a professor <br> 
 <strong>GET</strong> request -> BASE_API_URL -> get all professors <br>
 <strong>GET</strong> request -> BASE_API_URL/:id -> get a professor by id <br>
 <strong>DELETE</strong> request -> BASE_API_URL/:id -> delete a professor by id <br>
