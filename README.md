@@ -5,8 +5,8 @@ Tehnologii:
 - backend -> NodeJS
 - baza de date -> SQLite (momentan)
 
-Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si anume:
-○ Profesor
+Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si anume: <br>
+○ Profesor <br>
 ○ Student
 
 Profesor:
