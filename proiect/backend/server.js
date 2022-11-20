@@ -2,11 +2,15 @@ import express from 'express';
 import { Professor } from './entity/Professor.js';
 import { Student } from './entity/Student.js';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(
+    cors({ origin: ['http://localhost:3000'] })
+);
 
 /*
    API -> Entity: Professor
@@ -53,11 +57,16 @@ app.post(`/${PROFESSOR_API_BASE_PATH}`, (req, res) => {
 app.put(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Professor.update(req.body, {
-        where: {
-            id: id
-        }
-    }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+    if (id instanceof Number) {
+        Professor.update(req.body, {
+            where: {
+                id: id
+            }
+        }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+    }
+    else {
+        res.send({ status: "ID is not a number" })
+    }
 })
 
 
@@ -68,6 +77,15 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/:id/students`, (req, res) => {
     Professor.findByPk(id, { include: [{ model: Student }] }).then((professorStudents) => {
         res.send(professorStudents);
     });
+})
+
+app.post(`/${PROFESSOR_API_BASE_PATH}/auth`, (req, res) => {
+    const { email, password } = req.body;
+
+    Professor.findOne({ where: { email: email, password: password } }).then((professor) => {
+
+        professor != null ? res.send({ authResponse: "ACCEPTED" }) : res.send({ authResponse: "DENIED" })
+    })
 })
 
 
