@@ -16,6 +16,14 @@ class PROFESSOR_SERVICE {
     async deleteProfessorById(id) {
         return await axios.delete(`${PROFESSOR_API_BASE_PATH}/${id}`)
     }
+
+    async sendAuthRequest(body) {
+        return await axios.post(`${PROFESSOR_API_BASE_PATH}/auth`, body);
+    }
+
+    async getAllStudents(id) {
+        return await axios.get(`${PROFESSOR_API_BASE_PATH}/${id}/students`);
+    }
 }
 
 export default new PROFESSOR_SERVICE();

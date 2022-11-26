@@ -20,7 +20,7 @@ const PROFESSOR_API_BASE_PATH = 'professors';
 
 app.get(`/${PROFESSOR_API_BASE_PATH}`, (req, res) => {
 
-    Professor.findAll().then((data) => res.send(data));
+    Professor.findAll().then((professors) => res.send(professors));
 
 })
 
@@ -34,7 +34,7 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
 
-    Professor.findByPk(id).then((data) => data != null ? res.send(data) : res.send({ status: "No data found!" }));
+    Professor.findByPk(id).then((professor) => professor != null ? res.send(professor) : res.send({ status: "No data found!" }));
 })
 
 app.delete(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
@@ -45,7 +45,7 @@ app.delete(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
             id: id
         }
     })
-        .then((data) => res.send({ rowsAffected: data }));
+        .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
 })
 
 
@@ -79,13 +79,17 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/:id/students`, (req, res) => {
     });
 })
 
-app.post(`/${PROFESSOR_API_BASE_PATH}/auth`, (req, res) => {
+app.post(`/${PROFESSOR_API_BASE_PATH}/auth`, async (req, res) => {
     const { email, password } = req.body;
 
-    Professor.findOne({ where: { email: email, password: password } }).then((professor) => {
 
-        professor != null ? res.send({ authResponse: "ACCEPTED" }) : res.send({ authResponse: "DENIED" })
-    })
+    const professor = await Professor.findOne({ where: { email: email, password: password } });
+
+    if (professor) {
+        res.send({ authResponse: "ACCEPTED", user: professor })
+    }
+    else res.send({ authResponse: "DENIED" })
+
 })
 
 
@@ -97,7 +101,7 @@ const STUDENT_API_BASE_PATH = 'students';
 
 app.get(`/${STUDENT_API_BASE_PATH}`, (req, res) => {
 
-    Student.findAll().then((data) => res.send(data));
+    Student.findAll().then((students) => res.send(students));
 
 })
 
@@ -105,7 +109,7 @@ app.get(`/${STUDENT_API_BASE_PATH}`, (req, res) => {
 app.get(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Student.findByPk(id).then((data) => data != null ? res.send(data) : res.send({ status: "No data found woth this id!" }));
+    Student.findByPk(id).then((student) => student != null ? res.send(student) : res.send({ status: "No data id!" }));
 })
 
 
@@ -117,7 +121,7 @@ app.delete(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
             id: id
         }
     })
-        .then((data) => res.send({ rowsAffected: data }));
+        .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
 })
 
 
@@ -133,27 +137,34 @@ app.put(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
         where: {
             id: id
         }
-    }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE ON update" }));
+    }).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
 })
 
 app.get(`/${STUDENT_API_BASE_PATH}/series/:series`, (req, res) => {
     const series = req.params.series;
 
-    Student.findAll({ where: { series: series } }).then((students) => res.send(students));
+    Student.findAll({ where: { series: series } }).then((studentsBySeries) => res.send(studentsBySeries));
 
 })
 
 app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, (req, res) => {
     const class_ = req.params.class;
 
-    Student.findAll({ where: { class: class_ } }).then((students) => res.send(students));
+    Student.findAll({ where: { class: class_ } }).then((studentsByClass) => res.send(studentsByClass));
 
 })
 
+app.post(`/${STUDENT_API_BASE_PATH}/auth`, async (req, res) => {
+    const { email, password } = req.body;
 
+    const student = await Student.findOne({ where: { email: email, password: password } });
 
+    if (student) {
+        res.send({ authResponse: "ACCEPTED", user: student })
+    }
+    else res.send({ authResponse: "DENIED" })
 
-
+})
 
 
 
@@ -166,8 +177,3 @@ app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, (req, res) => {
    PORNIRE SERVER -> PORT: 8080
 */
 app.listen(8080);
-
-
-
-// GET ALL, GET BY ID, POST, PUT(BY ID), DELETE BY ID
-

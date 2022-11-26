@@ -1,0 +1,211 @@
+  * {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+  }
+
+  body,
+  html {
+    height: 100%;
+    font-family: Poppins-Regular, sans-serif;
+  }
+
+
+  button {
+    outline: none !important;
+    border: none;
+    background: transparent;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  .limiter {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .container-login {
+    width: 100%;
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 10px;
+    background-color: #00dbdf;
+
+  }
+
+  .wrap-login {
+    width: 450px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+
+  .login-form {
+    width: 100%;
+    height: 550px;
+    padding: 40px 20px 10px 20px;
+
+  }
+
+  .login-form-title {
+    display: block;
+    font-family: Poppins-Bold;
+    font-size: 40px;
+    font-style: italic;
+    font-weight: bold;
+    color: #77036d;
+    line-height: 1.2;
+    text-align: center;
+    padding-bottom: 15px;
+  }
+
+
+  .wrap-input {
+    width: 100%;
+    position: relative;
+    border-bottom: 2px solid #d9d9d9;
+  }
+
+  .radio-group {
+    border: solid borderWidth fg;
+    display: inline-block;
+    margin: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-content: center;
+    text-align: center;
+    display: inline-block;
+    margin-left: 100px;
+
+  }
+
+
+  label {
+    color: lighten(bg, 40%);
+    display: inline-block;
+    cursor: pointer;
+    font-weight: initial;
+    padding: 5px 20px;
+  }
+
+  input {
+    outline: none;
+    border: none;
+  }
+
+  .label-input {
+    font-family: Poppins-Regular;
+    font-size: 18px;
+    color: #333333;
+    line-height: 1.5;
+    padding-left: 7px;
+    font-weight: bold;
+
+  }
+
+  .radio-label {
+    font-family: Poppins-Regular;
+    font-size: 17px;
+    color: #333333;
+    line-height: 1.5;
+    padding-left: 7px;
+    align-content: center;
+  }
+
+
+  .input100 {
+    font-family: Poppins-Medium;
+    font-size: 16px;
+    color: #333333;
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    height: 55px;
+    background: transparent;
+    padding: 0 7px 0 45px;
+  }
+
+
+  .container-login-form-btn {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 30px;
+  }
+
+  .wrap-login-form-btn {
+    width: 100%;
+    display: block;
+    position: relative;
+    z-index: 1;
+    border-radius: 25px;
+    overflow: hidden;
+    margin: 0 auto;
+
+  }
+
+  .login-form-bgbtn {
+    position: absolute;
+    z-index: -1;
+    width: 300%;
+    height: 100%;
+    background: #a64bf4;
+    background: -webkit-linear-gradient(to right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -o-linear-gradient(to right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: -moz-linear-gradient(to right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    background: linear-gradient(to right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+    top: 0;
+    left: -100%;
+
+  }
+
+  .login-form-btn {
+    font-family: Poppins-Medium;
+    font-size: 16px;
+    color: #fff;
+    line-height: 1.2;
+    text-transform: uppercase;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    width: 100%;
+    height: 50px;
+  }
+
+  .wrap-login-form-btn:hover .login-form-bgbtn {
+    left: 0;
+  }
+
+
+  /*//////////////////////////////////////////////////////////////////
+  [ making Responsive ]*/
+
+  @media (max-width: 576px) {
+    .wrap-login {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+  }

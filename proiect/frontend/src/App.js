@@ -1,33 +1,17 @@
-import { useState } from 'react';
-import PROFESSOR_SERVICE from './PROFESSOR_SERVICE.js';
-
+import { Routes, Route } from 'react-router-dom';
+import Dashboard from './component/Dashboard';
+import Login from './component/Login/Login';
 
 const App = () => {
 
-  const [id, setId] = useState(null);
-  const [rowsAffected, setRowsAffected] = useState(null);
-
-
-  const handleClick = () => {
-
-    PROFESSOR_SERVICE.deleteProfessorById(id).then((res) => {
-      if (res.status === 200) {
-        setRowsAffected(res.data.rowsAffected)
-      }
-    })
-
-  }
 
   return (
-    <div>
-      <button onClick={() => handleClick()}>Delete</button>
-      <input type={"text"} onChange={(e) => setId(e.target.value)} />
+    <Routes>
+      <Route path='/' element={<Login />} />
+      <Route path='/*' element={<Login />} />
 
-      {
-        rowsAffected == null ? null : <p>Rows affected: {rowsAffected}</p>
-      }
-
-    </div>
+      <Route path='/dashboard' element={<Dashboard />} />
+    </Routes>
   )
 }
 
