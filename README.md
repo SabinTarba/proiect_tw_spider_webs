@@ -51,10 +51,9 @@ BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` 
 -> sending a request a professor for LOG IN                             
 ->it has two different responses:<br>
-       * ```
-      <strong>✅ACCEPTED</strong>(PROFESSOR is logged in with succes) == ACCEPTED_RESPONSE<br>
-       <strong>⛔DENIED</strong>(PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
-      ```
+     #^  <strong>✅ACCEPTED</strong>(PROFESSOR is logged in with succes) == ACCEPTED_RESPONSE<br>
+     #^  <strong>⛔DENIED</strong>(PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
+      
 
 ```SERVER: localhost```
 ```PORT: 8080```
@@ -70,10 +69,8 @@ BASE_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` 
 -> sending a request a student for LOG IN                             
 ->it has two different responses:<br>
-        * ```
-       <strong>✅ACCEPTED</strong>(STUDENT is logged in with succes) == ACCEPTED_RESPONSE<br>
-       <strong>⛔DENIED</strong>(STUDENT isn't logged in with succes) == DENIED_RESPONSE
-        ```
+      #^  <strong>✅ACCEPTED</strong>(STUDENT is logged in with succes) == ACCEPTED_RESPONSE<br>
+      #^  <strong>⛔DENIED</strong>(STUDENT isn't logged in with succes) == DENIED_RESPONSE
         
 [DE FACUT DATA VIITOARE]: sa facem tabela Team si Project -> de facut algoritm pentru creare echipe (in mod aleatoriu sau in functie de un anumit criteriu in spate) -> de facut pagina care afiseaza echipele pentru un anumit professor! ID professor trebuie sa se regaseasca in tabela Team <br>
 
