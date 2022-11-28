@@ -12,6 +12,7 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 Profesor:
 - se poate loga
 - poate vedea o lista cu toate proiectele si evaluarea finala (bazate pe media notelor acordate intr-un mod anonim) pentru fiecare proiect, fără a vedea însă identitatea membrilor juriului (permisiune speciala pentru entitatea "profesor"), insa poate vedea membrii echipei proiectului
+- poate veadea listsa cu toti studentii pe care acestia i-a adaugat
 
 Student:
 - se poate loga
