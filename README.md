@@ -48,3 +48,9 @@ BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id```/students -> get the professor with specified id and the list of his students <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a professor by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing professor <br>
+
+
+[DE FACUT DATA VIITOARE]: sa facem tabela Team si Project -> de facut algoritm pentru creare echipe (in mod aleatoriu sau in functie de un anumit criteriu in spate) -> de facut pagina care afiseaza echipele pentru un anumit professor! ID professor trebuie sa se regaseasca in tabela Team <br>
+PAGINA PENTRU AFISARE PROGRES PROEICT: <br>
+1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
+2. STUDENT LIDER DE ECHIPA (o sa fie un flag la nivel de tabela Team) -> READ & MODIFY MODE
