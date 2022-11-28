@@ -47,7 +47,7 @@ const AddStudent = () => {
     const [validated, setValidated] = useState(false);
     const [showAlert, setShowAlert] = useState(false);
     const [saveStudentRequest, setSaveStudentRequest] = useState({
-        professorId: loggedUser.id,
+        professorId: loggedUser?.id,
         firstName: null,
         lastName: null,
         email: null,

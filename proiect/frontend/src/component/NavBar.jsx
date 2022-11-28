@@ -29,7 +29,7 @@ const navLinks = [
 
 const NavBar = () => {
     const loggedUser = getLoggedUser();
-    const alias = loggedUser.type === STUDENT_ACCOUNT ? "[student]" : "[professor]";
+    const alias = loggedUser?.type === STUDENT_ACCOUNT ? "[student]" : "[professor]";
 
     return (
         <Navbar bg='primary' variant='dark'>

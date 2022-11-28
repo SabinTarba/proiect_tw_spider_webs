@@ -4,7 +4,7 @@ import { getLoggedUser } from '../utils/auth.js';
 import { Routes, useNavigate, Route } from 'react-router-dom';
 import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE.js';
 import NavBar from './NavBar.jsx';
-import StudentsList from './Login/StudentsList.jsx';
+import StudentsList from './StudentsList.jsx';
 import AddStudent from './AddStudent.jsx';
 
 

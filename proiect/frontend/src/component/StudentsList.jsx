@@ -1,11 +1,9 @@
-import { getLoggedUser } from '../../utils/auth.js';
 import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 
 
 const StudentsList = ({ students }) => {
 
-    const loggedUser = getLoggedUser();
 
     return (
 
