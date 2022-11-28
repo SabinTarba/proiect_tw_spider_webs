@@ -3,8 +3,9 @@ import './login.css';
 import PROFESSOR_SERVICE from '../../services/PROFESSOR_SERVICE.js';
 import STUDENT_SERVICE from '../../services/STUDENT_SERVICE.js'
 import Alert from './Alert';
-import { saveLoggedUser } from '../../utils/auth.js';
+import { getLoggedUser, saveLoggedUser } from '../../utils/auth.js';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 
 const PROFESSOR_ACCOUNT = 1;
@@ -26,6 +27,12 @@ const Login = () => {
     const [displayInfoAlert, setDisplayInfoAlert] = useState(false);
 
     const navigate = useNavigate();
+
+
+    useEffect(() => {
+        const loggedUser = getLoggedUser();
+        if (loggedUser) navigate('/dashboard');
+    }, [navigate])
 
     const handleFormSubmit = (e) => {
 

@@ -20,6 +20,10 @@ class STUDENT_SERVICE {
     async sendAuthRequest(body) {
         return await axios.post(`${STUDENT_API_BASE_PATH}/auth`, body);
     }
+
+    async saveStudent(student) {
+        return await axios.post(`${STUDENT_API_BASE_PATH}`, student);
+    }
 }
 
 export default new STUDENT_SERVICE();
