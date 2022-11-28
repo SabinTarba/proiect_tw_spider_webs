@@ -48,6 +48,23 @@ BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id```/students -> get the professor with specified id and the list of his students <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a professor by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing professor <br>
+<strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` -> sending a request a professor for LOG IN                                
+                                                                             ->it has two different responses:
+                                                                                  ✅DENIED(PROFESSOR is logged in with succes) == ACCEPTED_RESPONSE
+                                                                                  ⛔ACCEPTED(PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
+
+```SERVER: localhost```
+```PORT: 8080```
+
+
+<u><strong>Student</strong></u> <br><br>
+BASE_API_URL: <i>localhost:8080/students</i> <br><br>
+<strong>```POST```</strong> request -> BASE_API_URL -> save a student <br> 
+<strong>```GET```</strong> request -> BASE_API_URL -> get all students <br>
+<strong>```GET```</strong> request -> BASE_API_URL/students -> get all professors and their students <br>
+<strong>```GET```</strong> request -> BASE_API_URL/```:id``` -> get a student by id <br>
+<strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a student by id <br>
+<strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing student <br>
 
 
 [DE FACUT DATA VIITOARE]: sa facem tabela Team si Project -> de facut algoritm pentru creare echipe (in mod aleatoriu sau in functie de un anumit criteriu in spate) -> de facut pagina care afiseaza echipele pentru un anumit professor! ID professor trebuie sa se regaseasca in tabela Team <br>
