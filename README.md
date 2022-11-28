@@ -48,10 +48,10 @@ BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id```/students -> get the professor with specified id and the list of his students <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a professor by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing professor <br>
-<strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` -> sending a request a professor for LOG IN<br>                               
+<strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` -> sending a request a professor for LOG IN                             
                                                                              ->it has two different responses:<br>
                                                                                   <strong>✅DENIED`</strong>(PROFESSOR is logged in with succes) == ACCEPTED_RESPONSE
-                                                                                  <strong>⛔ACCEPTED(`</strong>PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
+                                                                                  <strong>⛔ACCEPTED</strong>(PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
 
 ```SERVER: localhost```
 ```PORT: 8080```
