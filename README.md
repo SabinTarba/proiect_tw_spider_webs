@@ -70,6 +70,7 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id``` -> get a student by id <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a student by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing student <br>
+
 <strong>```POST```</strong> request -> BASE_API_URL/```:auth``` -> used for handle login request for Students. Possible reponses:<br>
 <strong>✅ACCEPTED</strong>
 {
