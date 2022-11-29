@@ -48,15 +48,19 @@ BASE_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id```/students -> get the professor with specified id and the list of his students <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a professor by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing professor <br>
-<strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth``` <br>
--> sending a request a professor for LOG IN                             
-->it has two different responses:<br>
-  _____     <strong>✅ACCEPTED</strong>(PROFESSOR is logged in with succes) == ACCEPTED_RESPONSE<br>
-  _____     <strong>⛔DENIED</strong>(PROFESSOR isn't logged in with succes) == DENIED_RESPONSE
+
+<strong>```POST```</strong> request -> BASE_API_URL/```:auth``` -> used for handle login request. Possible reponses:<br>
+<strong>✅ACCEPTED</strong>
+{
+   "authResponse": "ACCEPTED"
+}<br>
+<strong>⛔DENIED</strong>
+{
+   "authResponse": "DENIED"
+}<br>
       
 
-```SERVER: localhost```
-```PORT: 8080```
+
 
 <u><strong>Student</strong></u> <br><br>
 BASE_API_URL: <i>localhost:8080/students</i> <br><br>
@@ -66,7 +70,7 @@ BASE_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```GET```</strong> request -> BASE_API_URL/```:id``` -> get a student by id <br>
 <strong>```DELETE```</strong> request -> BASE_API_URL/```:id``` -> delete a student by id <br>
 <strong>```PUT```</strong> request -> BASE_API_URL/```:id``` -> modify an existing student <br>
-<strong>```SEND AUTH REQUEST```</strong> request -> BASE_API_URL/```:auth```<br> 
+<strong>```POST```</strong> request -> BASE_API_URL/```:auth```<br> 
 -> sending a request a student for LOG IN                             
 ->it has two different responses:<br>
   _____  <strong>✅ACCEPTED</strong>(STUDENT is logged in with succes) == ACCEPTED_RESPONSE<br>
