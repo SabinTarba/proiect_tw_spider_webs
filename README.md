@@ -49,7 +49,7 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```DELETE```</strong> request -> BASE_PROFESSOR_API_URL/```:id``` -> delete a professor by id <br>
 <strong>```PUT```</strong> request -> BASE_PROFESSOR_API_URL/```:id``` -> modify an existing professor <br>
 
-<strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/auth -> used for handle login request for Professors. Possible reponses:<br>
+<strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/auth -> used for handle login request for Professors. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
 {
    "authResponse": "ACCEPTED"
@@ -70,7 +70,7 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```DELETE```</strong> request -> BASE_STUDENT_API_URL/```:id``` -> delete a student by id <br>
 <strong>```PUT```</strong> request -> BASE_STUDENT_API_URL/```:id``` -> modify an existing student <br>
 
-<strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth -> used for handle login request for Students. Possible reponses:<br>
+<strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth -> used for handle login request for Students. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
 {
    "authResponse": "ACCEPTED"
