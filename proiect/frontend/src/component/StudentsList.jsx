@@ -9,7 +9,6 @@ import Modal from 'react-bootstrap/Modal';
 const StudentsList = ({ students }) => {
 
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
 
     const deleteStudent = (studentID) => {
 
@@ -52,18 +51,17 @@ const StudentsList = ({ students }) => {
 
                                     <MdDelete color="red" size={25} onClick={() => setShow(true)} cursor="pointer"></MdDelete>
 
-
                                     {show &&
-                                        <Modal show={show} onHide={handleClose}>
+                                        <Modal show={show} onHide={() => setShow(false)}>
                                             <Modal.Header closeButton>
                                                 <Modal.Title>Confirmation dialog</Modal.Title>
                                             </Modal.Header>
                                             <Modal.Body>Are you sure you want to delete this student?</Modal.Body>
                                             <Modal.Footer>
-                                                <Button variant="secondary" onClick={() => { handleClose(); }}>
+                                                <Button variant="secondary" onClick={() => setShow(false)}>
                                                     No
                                                 </Button>
-                                                <Button variant="danger" onClick={() => { handleClose(); deleteStudent(student.id) }}>
+                                                <Button variant="danger" onClick={() => { setShow(false); deleteStudent(student.id) }}>
                                                     Yes
                                                 </Button>
                                             </Modal.Footer>
