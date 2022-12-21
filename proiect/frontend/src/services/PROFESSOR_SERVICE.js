@@ -24,6 +24,10 @@ class PROFESSOR_SERVICE {
     async getAllStudents(id) {
         return await axios.get(`${PROFESSOR_API_BASE_PATH}/${id}/students`);
     }
+
+    async generateTeams(professorId) {
+        return await axios.get(`${PROFESSOR_API_BASE_PATH}/generateTeams/${professorId}`);
+    }
 }
 
 export default new PROFESSOR_SERVICE();

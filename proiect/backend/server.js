@@ -3,6 +3,9 @@ import { Professor } from './entity/Professor.js';
 import { Student } from './entity/Student.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { Team } from './entity/Team.js';
+import { Sequelize } from 'sequelize';
+
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -11,6 +14,11 @@ app.use(bodyParser.json());
 app.use(
     cors({ origin: ['http://localhost:3000'] })
 );
+
+const sequelize = new Sequelize({
+    dialect: 'sqlite',
+    storage: 'database.sqlite'
+});
 
 /*
    API -> Entity: Professor
@@ -146,10 +154,10 @@ app.get(`/${STUDENT_API_BASE_PATH}/series/:series`, (req, res) => {
 
 })
 
-app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, (req, res) => {
+app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, async (req, res) => {
     const class_ = req.params.class;
 
-    Student.findAll({ where: { class: class_ } }).then((studentsByClass) => res.send(studentsByClass));
+    await Student.findAll({ where: { class: class_ } }).then((studentsByClass) => res.send(studentsByClass));
 
 })
 
@@ -168,6 +176,58 @@ app.post(`/${STUDENT_API_BASE_PATH}/auth`, async (req, res) => {
 
 
 
+/*
+   API REQUEST FOR GENERATE TEAMS
+*/
+
+const teamNameList = ["Ain't Nothing But a Work Crew", "Weekend Warriors", "The Avengers", "Team Canada", "We Are The Champions", "Bright Reds", "We Will Smash You"];
+
+app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId`, async (req, res) => {
+
+    const profId = req.params.professorId;
+    const requiredNoStudentsPerTeam = 2; // req.paramas.noStudentsPerTeam
+
+    let students = await Student.findAll({ where: { professorId: profId }, raw: true });
+    let originalStudents = await Student.findAll({ where: { professorId: profId }, raw: true });
+    const noTotalStudents = students.length;
+
+    const noTeamsResulted = Math.trunc(noTotalStudents / requiredNoStudentsPerTeam); // echipe intregi
+    const lastTeamNoStudents = noTotalStudents % requiredNoStudentsPerTeam;
+
+
+    let teams = [];
+    let lastTeamId;
+
+    Team.findAll({
+        attributes: [[sequelize.fn('max', sequelize.col('id')), 'lastTeamId']],
+        raw: true
+    }).then(data => {
+        lastTeamId = data === null ? 0 : lastTeamId;
+        console.log(data.lastTeamId);
+    })
+
+
+
+
+    // for (let i = 0; i < noTeamsResulted; i++) {
+
+
+    //     team.save().then(team => {
+
+    //         for (let i = 0; i < requiredNoStudentsPerTeam; i++) {
+    //             let randomStudent = students[Math.trunc(Math.random() * students.length)];
+    //             originalStudents[randomStudent].teamId = team.id;
+    //             students = students.filter(student => Object.is(student, randomStudent));
+
+    //         }
+    //     });
+
+
+    // }
+
+
+}
+);
 
 
 

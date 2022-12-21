@@ -1,5 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import { Student } from './Student.js';
+import { Team } from './Team.js';
 
 
 const sequelize = new Sequelize({
@@ -44,5 +45,12 @@ export const Professor = sequelize.define('professor', {
 Professor.hasMany(Student);
 Student.belongsTo(Professor);
 
+Team.hasMany(Student);
+Student.belongsTo(Team);
+
+Professor.hasMany(Team);
+Team.belongsTo(Professor);
+
 Professor.sync();
 Student.sync();
+Team.sync();

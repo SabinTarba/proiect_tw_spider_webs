@@ -2,13 +2,18 @@ import Table from 'react-bootstrap/Table';
 import Container from 'react-bootstrap/Container';
 import { MdDelete } from 'react-icons/md';
 import STUDENT_SERVICE from '../services/STUDENT_SERVICE';
-import { useState } from 'react';
+import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE';
+import { useEffect, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { getLoggedUser } from '../utils/auth';
 
-const StudentsList = ({ students }) => {
+const StudentsList = () => {
 
     const [show, setShow] = useState(false);
+    const [students, setStudents] = useState([]);
+    const loggedUser = getLoggedUser();
+
 
     const deleteStudent = (studentID) => {
 
@@ -18,6 +23,15 @@ const StudentsList = ({ students }) => {
             }
         })
     }
+
+    useEffect(() => {
+        PROFESSOR_SERVICE.getAllStudents(loggedUser.id).then((res) => {
+            if (res.status === 200) {
+                setStudents(res.data.students);
+            }
+        })
+
+    }, [loggedUser.id])
 
 
     return (
