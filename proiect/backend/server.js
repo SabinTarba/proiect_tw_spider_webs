@@ -33,7 +33,6 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/students`, (req, res) => {
 app.get(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-
     Professor.findByPk(id).then((professor) => professor != null ? res.send(professor) : res.send({ status: "No data found!" }));
 })
 

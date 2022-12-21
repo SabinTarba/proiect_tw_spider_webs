@@ -13,14 +13,14 @@ const navLinks = [
 
     {
         path: "/dashboard/students-list",
-        textColor: "text-white",
+        textColor: "text-white fw-bold",
         text: "Student list",
         type: PROFESSOR_ACCOUNT
     },
 
     {
         path: "/dashboard/add-student",
-        textColor: "text-white",
+        textColor: "text-white fw-bold",
         text: "Add student",
         type: PROFESSOR_ACCOUNT
     },
@@ -47,9 +47,9 @@ const NavBar = () => {
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Brand>
-                        Signed in as: <span className="text-warning fw-bold">{loggedUser?.lastName + " " + loggedUser?.firstName + " " + alias}</span>
+                        <span className="fw-bold">Signed in as: </span><span className="text-warning fw-bold">{loggedUser?.lastName + " " + loggedUser?.firstName + " " + alias}</span>
                     </Navbar.Brand>
-                    <Button variant='warning' className='text-muted' onClick={() => { logOutUSer(); window.location.reload(false); }}>Logout</Button>
+                    <Button variant='warning' className='text-white fw-bold' onClick={() => { logOutUSer(); window.location.reload(false); }}>Logout</Button>
                 </Navbar.Collapse>
             </Container>
         </Navbar >

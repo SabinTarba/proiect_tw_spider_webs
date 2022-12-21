@@ -9,11 +9,11 @@ class STUDENT_SERVICE {
         return await axios.get(STUDENT_API_BASE_PATH);
     }
 
-    async getStudentsById(id) {
+    async getStudentById(id) {
         return await axios.get(`${STUDENT_API_BASE_PATH}/${id}`);
     }
 
-    async deleteStudentsById(id) {
+    async deleteStudentById(id) {
         return await axios.delete(`${STUDENT_API_BASE_PATH}/${id}`)
     }
 
