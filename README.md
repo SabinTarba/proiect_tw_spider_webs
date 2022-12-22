@@ -72,13 +72,13 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth -> used for handle login request for Students. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
-{
-   "authResponse": "ACCEPTED"
-}<br>
+```json
+"authResponse": "ACCEPTED"
+```
 <strong>⛔DENIED</strong>
-{
-   "authResponse": "DENIED"
-}<br>
+```json
+"authResponse": "DENIED"
+```
         
 [DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
 1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
