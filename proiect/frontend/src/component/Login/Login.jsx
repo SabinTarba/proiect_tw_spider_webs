@@ -6,6 +6,10 @@ import Alert from './Alert';
 import { getLoggedUser, saveLoggedUser } from '../../utils/auth.js';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Stack from 'react-bootstrap/Stack'
 
 
 const PROFESSOR_ACCOUNT = 1;
@@ -85,68 +89,60 @@ const Login = () => {
 
 
     return (
-
-        <div className="limiter">
-            <div className="container-login">
-                <div className="wrap-login">
-                    <form className="login-form">
-                        <span className="login-form-title">Login here</span>
-
-                        <div className="wrap-input">
-                            <span className="label-input">E-mail</span>
-                            <input
-                                className="input100"
-                                type="text"
-                                name="email"
-                                placeholder="Type your e-mail"
-                                onChange={(e) => setLoginRequest({ ...loginRequest, email: e.target.value })}
-                                onFocus={() => { setDisplayErrorAlert(false); setDisplayInfoAlert(false) }} />
-
-                        </div>
-
-                        <div className="wrap-input">
-                            <span className="label-input">Password</span>
-                            <input
-                                className="input100"
-                                type="password"
-                                name="pass"
-                                placeholder="Type your password"
-                                onChange={(e) => setLoginRequest({ ...loginRequest, password: e.target.value })}
-                                onFocus={() => { setDisplayErrorAlert(false); setDisplayInfoAlert(false) }}
+        <>
+            <Container className="mt-5 w-50 d-flex container rounded p-3 my-3 justify-content-center">
+                <Container className='m-5 p-4'>
+                    <Form className="p-3" >
+                    <Stack gap={2} md="4" className="mx-auto">
+                        <span className="shadow bg-white rounded "style={{"display": "block",
+                                                        "font-family": "Poppins-Bold",
+                                                        "font-size": "40px",
+                                                        "font-style": "italic",
+                                                        "font-weight": "bold",
+                                                        "color": "#00008B",
+                                                        "line-height": "1.2",
+                                                        "text-align": "center",
+                                                        "padding-bottom": "15px"}}>Login here</span>
+                            <Form.Group className="mb-3 mt-4" hasvalidation="true">
+                                <Form.Label className='fw-bold fs-5'>E-mail</Form.Label>
+                                <Form.Control type="text" name="email" placeholder="Type your e-mail                                                                                    @example.com" 
+                                aria-describedby="basic-addon2" required onChange={(e) => setLoginRequest({ ...loginRequest, email: e.target.value })}
+                                    onFocus={() => { setDisplayErrorAlert(false); setDisplayInfoAlert(false)}} />
+                            </Form.Group >
+                            
+                        <Form.Group className="mb-3" hasvalidation="true">
+                            <Form.Label className='fw-bold fs-5'>Password</Form.Label>
+                            <Form.Control type="password" name="pass" placeholder="Type your password" required onChange={(e) => setLoginRequest({ ...loginRequest, password: e.target.value })}
+                                onFocus={() => { setDisplayErrorAlert(false); setDisplayInfoAlert(false)}}  />
+                        </Form.Group >
+                        
+                    <Form.Group>
+                        <Form.Label className='mt-3 fw-bold fs-5'>User-type</Form.Label>
+                        <Form.Group className="pd-5 text-center fs-5">
+                        <Form.Check
+                                inline
+                                label="Professor"
+                                name="group1"
+                                type={'radio'}
+                                id={`inline-'radio'-Professor`}
+                                onChange={() => setAccount(PROFESSOR_ACCOUNT)} 
                             />
+                            <Form.Check
+                                inline
+                                label="Student"
+                                name="group1"
+                                type={'radio'}
+                                id={`inline-'radio'-Student`}
+                                onChange={() => setAccount(STUDENT_ACCOUNT)}
+                            />
+                        </Form.Group>
+                    </Form.Group>
 
-                        </div>
-
-                        <div className="wrap-input">
-                            <span className="label-input">User type</span><br />
-                            <div className="radio-group">
-                                <input
-                                    className="radio-input"
-                                    id="RB_1"
-                                    type="radio"
-                                    name="options"
-                                    onChange={() => setAccount(PROFESSOR_ACCOUNT)} />
-                                <label className="radio-label" htmlFor="RB_1"> Professor </label>
-
-                                <input className="radio-input"
-                                    id="RB_2"
-                                    type="radio"
-                                    name="options"
-                                    onChange={() => setAccount(STUDENT_ACCOUNT)} />
-                                <label className="radio-label" htmlFor="RB_2"> Student </label>
-                            </div>
-                        </div>
-
-                        <div className="container-login-form-btn">
-                            <div className="wrap-login-form-btn">
-                                <div className="login-form-bgbtn"></div>
-                                <button type='submit' className="login-form-btn" onClick={(e) => handleFormSubmit(e)}>Login</button>
-                            </div>
-                            <div>
-
-                            </div>
-                        </div>
-
+                    <Form.Group className="d-grid gap-2 mt-3" >
+                        <Button className="shadow-lg bg-primary rounded text-white" gap-2 variant="primary" size="lg" active onClick={(e) => handleFormSubmit(e)}> 
+                            <div>Login</div>
+                        </Button>{' '}
+                    </Form.Group>
                         {
                             displayErrorAlert && <Alert message={"Invalid email or password!"} bgColor={"red"} />
                         }
@@ -155,13 +151,12 @@ const Login = () => {
                             displayInfoAlert && <Alert message={"Both fields should be completed!"} bgColor={"#22C6C8"} />
 
                         }
-
-
-                    </form>
-                </div>
-            </div >
-
-        </div >
+                          </Stack>  
+            </Form>
+            </Container>
+                </Container>
+       
+        </>
     )
 }
 
