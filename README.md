@@ -64,11 +64,11 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <u><strong>Student</strong></u> <br><br>
 BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
-<strong>```POST```</strong> request -> BASE_STUDENT_API_URL -> save a student <br> 
-<strong>```GET```</strong> request -> BASE_STUDENT_API_URL -> get all students <br>
-<strong>```GET```</strong> request -> BASE_STUDENT_API_URL/```:id``` -> get a student by id <br>
-<strong>```DELETE```</strong> request -> BASE_STUDENT_API_URL/```:id``` -> delete a student by id <br>
-<strong>```PUT```</strong> request -> BASE_STUDENT_API_URL/```:id``` -> modify an existing student <br>
+<strong>```POST```</strong> request -> localhost:8080/students -> save a student <br> 
+<strong>```GET```</strong> request -> localhost:8080/students -> get all students <br>
+<strong>```GET```</strong> request -> localhost:8080/students/```:id``` -> get a student by id <br>
+<strong>```DELETE```</strong> request -> localhost:8080/students/```:id``` -> delete a student by id <br>
+<strong>```PUT```</strong> request -> localhost:8080/students/```:id``` -> modify an existing student <br>
 
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth -> used for handle login request for Students. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
