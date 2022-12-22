@@ -1,6 +1,6 @@
 # Proiect TW - echipa Spider-webs - grupa 1091E (Tarba Sabin si Stoica Oana Larisa) - Anonymous grading
 
-*** ## Tehnologii:***
+## ***Tehnologii:***
 - frontend -> React
 - backend -> NodeJS
 - baza de date -> SQLite (momentan)
@@ -23,7 +23,7 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 
 Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
-*** ## Steps:***
+## ***Steps:***
 1. Descrierea sistemului si a functionalitatilor
 2. Proiectarea bazei de date
 3. Creare serviciilor REST
