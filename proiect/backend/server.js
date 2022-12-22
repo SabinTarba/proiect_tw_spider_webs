@@ -191,6 +191,19 @@ app.post(`/${STUDENT_API_BASE_PATH}/auth`, async (req, res) => {
 })
 
 
+app.put(`/${STUDENT_API_BASE_PATH}/auth/changePassword`, (req, res) => {
+    const { id, newPassword } = req.body;
+
+    Student.update(
+        {
+            password: newPassword,
+            firstLogin: false
+        },
+        { where: { id: id } }
+    ).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+})
+
+
 
 
 /*
@@ -316,6 +329,15 @@ app.get(`/${TEAM_API_BASE_PATH}/:id/students`, (req, res) => {
     )
         .then((teamStudents) => res.send(teamStudents));
 })
+
+app.get(`/${TEAM_API_BASE_PATH}/:id`, (req, res) => {
+    const id = req.params.id;
+
+    Team.findByPk(id).then((team) => team != null ? res.send(team) : res.send({ status: "No data found!" }));
+})
+
+
+
 /*
    PORNIRE SERVER -> PORT: 8080
 */

@@ -34,6 +34,12 @@ const navLinks = [
         text: "List of generated teams",
         type: PROFESSOR_ACCOUNT
     },
+    {
+        path: "/dashboard/student-info",
+        textColor: "text-white fw-bold",
+        text: "Information",
+        type: STUDENT_ACCOUNT
+    },
 ]
 
 

@@ -21,6 +21,10 @@ class TEAM_SERVICE {
         return await axios.get(`${TEAM_API_BASE_PATH}/${teamId}/students`);
 
     }
+
+    async getTeamById(id) {
+        return await axios.get(`${TEAM_API_BASE_PATH}/${id}`);
+    }
 }
 
 

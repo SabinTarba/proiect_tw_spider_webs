@@ -97,6 +97,7 @@ const ListOfTeams = () => {
                             <th>#ID</th>
                             <th>Team name</th>
                             <th>Number of students</th>
+                            <th>Team leader</th>
                             <th>Professor full name</th>
                         </tr>
                     </thead>
@@ -109,6 +110,7 @@ const ListOfTeams = () => {
                                     <td>{team.id}</td>
                                     <td>{team.name}</td>
                                     <td>{team.noStudents}</td>
+                                    <td></td>
                                     <td>{professorTeams.lastName + " " + professorTeams.firstName}</td>
                                     <td className="d-flex justify-content-around">
 

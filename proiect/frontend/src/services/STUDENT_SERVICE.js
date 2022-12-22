@@ -25,6 +25,10 @@ class STUDENT_SERVICE {
         return await axios.post(`${STUDENT_API_BASE_PATH}`, student);
     }
 
+    async changeFirstTimePassword(body) {
+        return await axios.put(`${STUDENT_API_BASE_PATH}/auth/changePassword`, body);
+    }
+
 }
 
 export default new STUDENT_SERVICE();
