@@ -34,19 +34,19 @@ Steps:
 8. Testing
 
 ## Instrucțiuni de rulare:
-- [ ] 1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și  să deschidem folderul din VS Code.<br>
-- [ ] 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)<br>
-- [ ] 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
+- [x] 1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și  să deschidem folderul din VS Code.<br>
+- [x] 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)<br>
+- [x] 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
  ```
      npm i
      npm run server
  ```
-- [ ] 4. Ne poziționăm în directorul backend unde instalam **node modules** și pornim aplicația:
+- [x] 4. Ne poziționăm în directorul backend unde instalam **node modules** și pornim aplicația:
  ```
     npm i
     npm start
  ```
-- [ ] 5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
+- [x] 5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
 
 
 # API documentation
