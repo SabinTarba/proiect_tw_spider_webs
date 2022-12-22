@@ -34,14 +34,16 @@ Steps:
 8. Testing
 
 ##Funcționalități:
-1. Utilizăm funcția de clone ```git clone '<repository URL>```/ download proiectului de pe git urmând să îl dezarhivăm și să deschidem folderul din VS Code.
+1. Utilizăm funcția de clone ```git clone '<repository URL>' ```/ download proiectului de pe git urmând să îl dezarhivăm și să deschidem folderul din VS Code.
 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)
 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
- ```npm i
-    npm run server
+ ```
+     npm i
+     npm run server
  ```
  4. Ne poziționăm în directorul backend unde instalam **node modules** și pornim aplicația:
- ```npm i
+ ```
+    npm i
     npm start
  ```
  5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
