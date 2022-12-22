@@ -21,6 +21,9 @@ const StudentsList = () => {
             if (res.status !== 200) {
                 alert("Something went wrong!");
             }
+            else {
+                window.location.reload();
+            }
         })
     }
 
