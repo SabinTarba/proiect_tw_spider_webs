@@ -19,7 +19,7 @@ Student:
 - poate adauga un proiect
 - poate defini livrabile partiale pentru un anumit proiect deja adaugat
 - poate deveni in mod aleator jurat pentru un alt proiect:
-                  -> poate adauga / modifica doar notele personale pentru un anumit livrabil al unui proiect (unde este in juriu) pe o perioada de timp definita de sistem
+                  -> poate adauga / modifica doar notele personale pentru un anumit proiect pentru care a fost ales in juriu (unde este in juriu) pe o perioada de timp definita de sistem
 
 Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
@@ -51,13 +51,13 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/auth -> used for handle login request for Professors. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
-{
-   "authResponse": "ACCEPTED"
-}<br>
+```json
+"authResponse": "ACCEPTED"
+```
 <strong>⛔DENIED</strong>
-{
-   "authResponse": "DENIED"
-}<br>
+```json
+"authResponse": "DENIED"
+```
       
 
 <br>
@@ -72,16 +72,14 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth -> used for handle login request for Students. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
-{
-   "authResponse": "ACCEPTED"
-}<br>
+```json
+"authResponse": "ACCEPTED"
+```
 <strong>⛔DENIED</strong>
-{
-   "authResponse": "DENIED"
-}<br>
+```json
+"authResponse": "DENIED"
+```
         
-[DE FACUT DATA VIITOARE]: sa facem tabela Team si Project -> de facut algoritm pentru creare echipe (in mod aleatoriu sau in functie de un anumit criteriu in spate) -> de facut pagina care afiseaza echipele pentru un anumit professor! ID professor trebuie sa se regaseasca in tabela Team <br>
-
-PAGINA PENTRU AFISARE PROGRES PROEICT: <br>
+[DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
 1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
 2. STUDENT LIDER DE ECHIPA (o sa fie un flag la nivel de tabela Team) -> READ & MODIFY MODE
