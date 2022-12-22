@@ -75,7 +75,8 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 ```json
 "authResponse": "DENIED"
 ```
-      
+<strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL/```:id```/teams -> get the professor with specified id and the list of his created teams <br>
+<strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/generateTeams/```:id```/option-> used for generating teams. Professors can generate teams using ***option value*** which represents the number of students in each team. Possible option value:1, 2, 3, 4, 5. <br>
 
 <br>
 
