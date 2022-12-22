@@ -51,9 +51,9 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/auth -> used for handle login request for Professors. Possible responses:<br>
 <strong>✅ACCEPTED</strong>
-{
-   "authResponse": "ACCEPTED"
-}<br>
+```json
+"authResponse": "ACCEPTED"
+```
 <strong>⛔DENIED</strong>
 {
    "authResponse": "DENIED"
