@@ -56,7 +56,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 ```PORT: 8080```
 
 
-<u><strong>Professor</strong></u> 🧑‍🏫 <br><br> 
+## <u><strong>Professor</strong></u> 🧑‍🏫 <br><br> 
 BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL -> get all professors <br>
@@ -80,7 +80,7 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <br><br><br>
 
-<u><strong>Student</strong></u> 🧑‍🎓 <br><br> 
+## <u><strong>Student</strong></u> 🧑‍🎓 <br><br> 
 BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL -> save a student <br> 
 <strong>```GET```</strong> request -> BASE_STUDENT_API_URL -> get all students <br>
@@ -97,8 +97,21 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 ```json
 "authResponse": "DENIED"
 ```
+<strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth/changePassword -> used to change the password of the account when it is the student's first log in session.
 
 
+<br><br><br>
+
+## <u><strong>Team</strong></u> <br><br> 
+BASE_TEAM_API_URL: <i>localhost:8080/teams</i> <br><br>
+<strong>```GET```</strong> request -> BASE_TEAM_API_URL -> get all teams that has been created <br>
+<strong>```GET```</strong> request -> BASE_TEAM_API_URL/```:id``` -> get a team by id <br>
+<strong>```DELETE```</strong> request -> BASE_TEAM_API_URL/```:id``` -> delete a team by id <br>
+<strong>```GET```</strong> request -> BASE_TEAM_API_URL/```:id```/students -> get the team with specified id and the list of his students which were assigned to that team <br>
+<strong>```DELETE```</strong> request ->BASE_TEAM_API_URL/professor/```:professorId``` -> delete all the team by professor's id, which is the professor who created, generated all his teams <br>
+
+
+<br><br>
 *******
 [DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
 1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
