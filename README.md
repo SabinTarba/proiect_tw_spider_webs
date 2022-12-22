@@ -78,7 +78,7 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL/```:id```/teams -> get the professor with specified id and the list of his created teams <br>
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL/generateTeams/```:id```/option-> used for generating teams. Professors can generate teams using ***option value*** which represents the number of students in each team. Possible option value:1, 2, 3, 4, 5. <br>
 
-<br><br><br>
+<br><br>
 
 ## <u><strong>Student</strong></u> 🧑‍🎓 <br><br> 
 BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
@@ -100,9 +100,9 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL/auth/changePassword -> used to change the password of the account when it is the student's first log in session.
 
 
-<br><br><br>
+<br><br>
 
-## <u><strong>Team</strong></u> <br><br> 
+## <u><strong>Team 🧑‍🎓🧑‍🎓</strong></u> <br><br> 
 BASE_TEAM_API_URL: <i>localhost:8080/teams</i> <br><br>
 <strong>```GET```</strong> request -> BASE_TEAM_API_URL -> get all teams that has been created <br>
 <strong>```GET```</strong> request -> BASE_TEAM_API_URL/```:id``` -> get a team by id <br>
