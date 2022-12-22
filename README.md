@@ -1,4 +1,4 @@
-# Proiect TW - echipa Spider-webs - Anonymous grading <br>(Tarba Sabin si Stoica Oana Larisa) - grupa 1091E 💯
+# Proiect TW - echipa Spider-webs - Anonymous grading- grupa 1091E<br>(Tarba Sabin și Stoica Oana Larisa) 💯
 
 # ***Tehnologii:***
 - frontend -> React
