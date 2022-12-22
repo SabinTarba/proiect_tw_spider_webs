@@ -55,9 +55,9 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 "authResponse": "ACCEPTED"
 ```
 <strong>⛔DENIED</strong>
-{
-   "authResponse": "DENIED"
-}<br>
+```json
+"authResponse": "DENIED"
+```
       
 
 <br>
