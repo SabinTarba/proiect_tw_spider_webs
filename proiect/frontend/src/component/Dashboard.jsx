@@ -4,6 +4,7 @@ import { Routes, useNavigate, Route } from 'react-router-dom';
 import NavBar from './NavBar.jsx';
 import StudentsList from './StudentsList.jsx';
 import AddStudent from './AddStudent.jsx';
+import ListOfTeams from './ListOfTeams.jsx';
 
 
 const Dashboard = () => {
@@ -27,6 +28,7 @@ const Dashboard = () => {
             <Routes>
                 <Route path='/students-list' element={<StudentsList />} />
                 <Route path='/add-student' element={<AddStudent />} />
+                <Route path='/teams-list' element={<ListOfTeams />} />
             </Routes>
         </>
     );

@@ -24,6 +24,7 @@ class STUDENT_SERVICE {
     async saveStudent(student) {
         return await axios.post(`${STUDENT_API_BASE_PATH}`, student);
     }
+
 }
 
 export default new STUDENT_SERVICE();

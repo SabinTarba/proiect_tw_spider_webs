@@ -38,6 +38,8 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/students`, (req, res) => {
     })
 })
 
+
+
 app.get(`/${PROFESSOR_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
@@ -83,6 +85,14 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/:id/students`, (req, res) => {
 
     Professor.findByPk(id, { include: [{ model: Student }] }).then((professorStudents) => {
         res.send(professorStudents);
+    });
+})
+
+app.get(`/${PROFESSOR_API_BASE_PATH}/:id/teams`, (req, res) => {
+    const id = req.params.id;
+
+    Professor.findByPk(id, { include: [{ model: Team }] }).then((professorTeams) => {
+        res.send(professorTeams);
     });
 })
 
@@ -161,6 +171,13 @@ app.get(`/${STUDENT_API_BASE_PATH}/class/:class`, async (req, res) => {
 
 })
 
+app.get(`/${STUDENT_API_BASE_PATH}/team/:class`, async (req, res) => {
+    const class_ = req.params.class;
+
+    await Student.findAll({ where: { class: class_ } }).then((studentsByClass) => res.send(studentsByClass));
+
+})
+
 app.post(`/${STUDENT_API_BASE_PATH}/auth`, async (req, res) => {
     const { email, password } = req.body;
 
@@ -182,56 +199,123 @@ app.post(`/${STUDENT_API_BASE_PATH}/auth`, async (req, res) => {
 
 const teamNameList = ["Ain't Nothing But a Work Crew", "Weekend Warriors", "The Avengers", "Team Canada", "We Are The Champions", "Bright Reds", "We Will Smash You"];
 
-app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId`, async (req, res) => {
+app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async (req, res) => {
 
-    const profId = req.params.professorId;
-    const requiredNoStudentsPerTeam = 2; // req.paramas.noStudentsPerTeam
-
-    let students = await Student.findAll({ where: { professorId: profId }, raw: true });
-    let originalStudents = await Student.findAll({ where: { professorId: profId }, raw: true });
-    const noTotalStudents = students.length;
-
-    const noTeamsResulted = Math.trunc(noTotalStudents / requiredNoStudentsPerTeam); // echipe intregi
-    const lastTeamNoStudents = noTotalStudents % requiredNoStudentsPerTeam;
+    try {
 
 
-    let teams = [];
-    let lastTeamId;
+        const profId = Number(req.params.professorId);
+        const requiredNoStudentsPerTeam = Number(req.params.option);
 
-    Team.findAll({
-        attributes: [[sequelize.fn('max', sequelize.col('id')), 'lastTeamId']],
-        raw: true
-    }).then(data => {
-        lastTeamId = data === null ? 0 : lastTeamId;
-        console.log(data.lastTeamId);
-    })
+        let students = await Student.findAll({ where: { professorId: profId }, raw: true });
+        const noTotalStudents = students.length;
 
+        const noTeamsResulted = Math.trunc(noTotalStudents / requiredNoStudentsPerTeam); // complete teams
+        const lastTeamNoStudents = noTotalStudents % requiredNoStudentsPerTeam;
 
-
-
-    // for (let i = 0; i < noTeamsResulted; i++) {
+        // if "noTotalStudents/requiredNoStudentsPerTeam" is directly integer (perfect division)
+        // then we won't have an inceomplete team and the number of teams is the result of division
+        // otherwise we'll have number of COMPLETE teams = result of division + 1 INCOMPLETE team
+        const add1ForIncompleteTeamIfCase = lastTeamNoStudents !== 0 ? 1 : 0;
 
 
-    //     team.save().then(team => {
-
-    //         for (let i = 0; i < requiredNoStudentsPerTeam; i++) {
-    //             let randomStudent = students[Math.trunc(Math.random() * students.length)];
-    //             originalStudents[randomStudent].teamId = team.id;
-    //             students = students.filter(student => Object.is(student, randomStudent));
-
-    //         }
-    //     });
+        var teams = [];
 
 
-    // }
+        //get teams ready for inserting
+        for (let i = 0; i < noTeamsResulted + add1ForIncompleteTeamIfCase; i++)
+            if (i != noTeamsResulted || lastTeamNoStudents === 0) {
+                teams.push({
+                    name: teamNameList[(i + 5) * 120 % teamNameList.length],
+                    noStudents: requiredNoStudentsPerTeam,
+                    professorId: profId
+                })
+            }
+            else {
+                teams.push({
+                    name: teamNameList[(i + 5) * 120 % teamNameList.length],
+                    noStudents: lastTeamNoStudents,
+                    professorId: profId
+                })
+            }
 
 
+        //insert the team in database
+        for (let i = 0; i < noTeamsResulted + add1ForIncompleteTeamIfCase; i++)
+            await Team.create(teams[i])
+
+        //get the last id of the team
+        let lastTeamId = await Team.max('id');
+
+        //variable to track how many students have been assigned to a team
+        let assignedStudents = 0;
+
+
+        //assign the students to the above created teams
+        for (let i = teams.length - 1; i >= 0; i--) {
+            for (let j = assignedStudents; j < assignedStudents + teams[i].noStudents; j++) {
+                Student.update(
+                    { teamId: lastTeamId },
+                    { where: { id: students[j].id } }
+                );
+            }
+
+            lastTeamId--;
+            assignedStudents += teams[i].noStudents;
+        }
+
+        res.status(200).json({ successMessage: "GENERATED" });
+    }
+    catch (err) {
+        console.log(err);
+        res.status(501).json({ errorMessage: err });
+    }
 }
-);
+
+)
 
 
 
+/*
+   API -> Entity: Team
+*/
 
+const TEAM_API_BASE_PATH = 'teams';
+
+app.get(`/${TEAM_API_BASE_PATH}`, (req, res) => {
+    Team.findAll().then((teams) => res.send(teams));
+})
+
+app.delete(`/${TEAM_API_BASE_PATH}/:id`, (req, res) => {
+    const id = req.params.id;
+
+    Team.destroy({
+        where: {
+            id: id
+        }
+    })
+        .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
+})
+
+app.delete(`/${TEAM_API_BASE_PATH}/professor/:professorId`, (req, res) => {
+    const professorId = req.params.professorId;
+
+    Team.destroy({
+        where: {
+            professorId: professorId
+        }
+    })
+        .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
+})
+
+app.get(`/${TEAM_API_BASE_PATH}/:id/students`, (req, res) => {
+    const teamId = req.params.id;
+
+    Team.findByPk(teamId,
+        { include: { model: Student } }
+    )
+        .then((teamStudents) => res.send(teamStudents));
+})
 /*
    PORNIRE SERVER -> PORT: 8080
 */

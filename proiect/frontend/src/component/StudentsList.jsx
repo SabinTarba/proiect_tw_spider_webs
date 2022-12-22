@@ -25,13 +25,13 @@ const StudentsList = () => {
     }
 
     useEffect(() => {
-        PROFESSOR_SERVICE.getAllStudents(loggedUser.id).then((res) => {
+        PROFESSOR_SERVICE.getAllStudents(loggedUser?.id).then((res) => {
             if (res.status === 200) {
                 setStudents(res.data.students);
             }
         })
 
-    }, [loggedUser.id])
+    }, [loggedUser?.id])
 
 
     return (

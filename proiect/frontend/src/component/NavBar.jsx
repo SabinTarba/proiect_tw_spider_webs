@@ -4,6 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import { logOutUSer, getLoggedUser } from '../utils/auth.js';
 import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE.js';
+import Modal from 'react-bootstrap/Modal';
+import { useState } from 'react';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -25,18 +28,27 @@ const navLinks = [
         text: "Add student",
         type: PROFESSOR_ACCOUNT
     },
+    {
+        path: "/dashboard/teams-list",
+        textColor: "text-white fw-bold",
+        text: "List of generated teams",
+        type: PROFESSOR_ACCOUNT
+    },
 ]
 
 
 const NavBar = () => {
     const loggedUser = getLoggedUser();
     const alias = loggedUser?.type === STUDENT_ACCOUNT ? "[student]" : "[professor]";
+    const [show, setShow] = useState(false);
+    const [option, setOption] = useState();
 
 
-    const generateTeams = (professorId) => {
-        PROFESSOR_SERVICE.generateTeams(professorId).then(res => {
+    const generateTeams = (professorId, option) => {
+        PROFESSOR_SERVICE.generateTeams(professorId, option).then(res => {
             if (res.status === 200) {
                 alert("SUCCESS");
+                window.location.reload();
             }
             else {
                 alert("FAILURE");
@@ -58,7 +70,38 @@ const NavBar = () => {
 
                     }
 
-                    {loggedUser?.type === PROFESSOR_ACCOUNT && <Button className="text-white fw-bold" variant="success" onClick={() => generateTeams(loggedUser.id)}>Generate teams</Button>}
+                    {loggedUser?.type === PROFESSOR_ACCOUNT &&
+                        <Button className="text-white fw-bold" variant="success" onClick={() => setShow(true)}>Generate teams</Button>
+                    }
+                    {show &&
+                        <Modal show={show} onHide={() => setShow(false)}>
+                            <Modal.Header closeButton>
+                                <Modal.Title>Generate teams</Modal.Title>
+                            </Modal.Header>
+                            <Modal.Body>
+                                <Form.Select aria-label="Default select example" onChange={(e) => setOption(e.target.value)}>
+                                    <option>Choose the number of students per team</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </Form.Select>
+                            </Modal.Body>
+                            <Modal.Footer>
+                                <Button variant="danger" onClick={() => setShow(false)}>
+                                    Cancel
+                                </Button>
+                                <Button variant="success" onClick={() => { setShow(false); generateTeams(loggedUser.id, option) }}>
+                                    Submit
+                                </Button>
+                            </Modal.Footer>
+                        </Modal>
+                    }
+
+
+
+
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Brand>
