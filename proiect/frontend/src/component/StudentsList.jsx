@@ -49,6 +49,7 @@ const StudentsList = () => {
                         <th>Email</th>
                         <th>Series</th>
                         <th>Class</th>
+                        <th>Team ID</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -64,6 +65,7 @@ const StudentsList = () => {
                                 <td>{student.email}</td>
                                 <td>{student.series}</td>
                                 <td>{student.class}</td>
+                                <td>{student.teamId}</td>
                                 <td className="d-flex justify-content-center">
 
                                     <MdDelete color="red" size={25} onClick={() => setShow(true)} cursor="pointer"></MdDelete>
