@@ -82,26 +82,19 @@ const AddStudent = () => {
 
         setValidated(true);
 
-
-
-
     };
-
 
 
     return (
 
         <>
-
-
-            <Container className="mt-5 d-flex justify-content-center">
-                <h2>Add student</h2>
+            <Container className="mt-5 p-4 d-flex justify-content-center">
+                <span className='fs-2 fw-bold'>Add student</span>
             </Container>
 
             <Container className="mt-3 d-flex justify-content-center">
-                <Form className="w-50 row" noValidate validated={validated} onSubmit={handleSubmit}
-                >
-                    <div className="col-md-6">
+                <Form className="w-50 row form-group row mt-3" noValidate validated={validated} onSubmit={handleSubmit} >
+                    <div className="col-md-6 fst-italic">
 
                         <Form.Group className="mb-3" hasvalidation="true">
                             <Form.Label>Last name</Form.Label>
@@ -135,7 +128,7 @@ const AddStudent = () => {
                         </Form.Group>
 
                     </div>
-                    <div className="col-md-6">
+                    <div className="col-md-6 fst-italic">
 
                         <Form.Group className="mb-3" hasvalidation="true">
 
@@ -173,7 +166,7 @@ const AddStudent = () => {
 
                     </div>
 
-                    <Container className="d-flex justify-content-center mt-2">
+                    <Container className="d-flex justify-content-center mt-3">
                         <Button variant="primary" type="submit" className="w-50 ">
                             Save student
                         </Button>
