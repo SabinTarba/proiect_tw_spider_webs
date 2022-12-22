@@ -41,7 +41,7 @@ Steps:
 
 <u><strong>Professor</strong></u> <br><br>
 BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
-$ `\textcolor{teal}{ \text{ <strong>```POST```</strong>} } `$ request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
+ <strong>$`\textcolor{teal}{ \text{```POST```}}`$ </strong> request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL -> get all professors <br>
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL/students -> get all professors and their students <br>
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL/```:id``` -> get a professor by id <br>
