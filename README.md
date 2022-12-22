@@ -56,7 +56,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 ```PORT: 8080```
 
 
-<u><strong>Professor</strong></u> <br><br> 🧑‍🏫
+<u><strong>Professor</strong></u> 🧑‍🏫 <br><br> 
 BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL -> get all professors <br>
@@ -79,7 +79,7 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <br>
 
-<u><strong>Student</strong></u> <br><br> 🧑‍🎓
+<u><strong>Student</strong></u> 🧑‍🎓 <br><br> 
 BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL -> save a student <br> 
 <strong>```GET```</strong> request -> BASE_STUDENT_API_URL -> get all students <br>
