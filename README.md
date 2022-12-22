@@ -1,4 +1,4 @@
-# Proiect TW - echipa Spider-webs - grupa 1091E <br>(Tarba Sabin si Stoica Oana Larisa) - Anonymous grading
+# Proiect TW - echipa Spider-webs - grupa 1091E <br>(Tarba Sabin si Stoica Oana Larisa) - Anonymous grading 💯
 
 # ***Tehnologii:***
 - frontend -> React
@@ -9,12 +9,12 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 ○ Profesor <br>
 ○ Student
 
-### Profesor:
+### Profesor: 🧑‍🏫
 - se poate loga
 - poate vedea o lista cu toate proiectele si evaluarea finala (bazate pe media notelor acordate intr-un mod anonim) pentru fiecare proiect, fără a vedea însă identitatea membrilor juriului (permisiune speciala pentru entitatea "profesor"), insa poate vedea membrii echipei proiectului
 - poate veadea listsa cu toti studentii pe care acestia i-a adaugat
 
-### Student:
+### Student: 👨‍🎓
 - se poate loga
 - poate adauga un proiect
 - poate defini livrabile partiale pentru un anumit proiect deja adaugat
@@ -56,7 +56,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 ```PORT: 8080```
 
 
-<u><strong>Professor</strong></u> <br><br>
+<u><strong>Professor</strong></u> <br><br> 🧑‍🏫
 BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL -> get all professors <br>
@@ -79,7 +79,7 @@ BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 
 <br>
 
-<u><strong>Student</strong></u> <br><br>
+<u><strong>Student</strong></u> <br><br> 🧑‍🎓
 BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 <strong>```POST```</strong> request -> BASE_STUDENT_API_URL -> save a student <br> 
 <strong>```GET```</strong> request -> BASE_STUDENT_API_URL -> get all students <br>
