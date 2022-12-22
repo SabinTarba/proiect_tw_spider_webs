@@ -1,6 +1,6 @@
 # Proiect TW - echipa Spider-webs - grupa 1091E (Tarba Sabin si Stoica Oana Larisa) - Anonymous grading
 
-Tehnologii:
+*** ## Tehnologii:***
 - frontend -> React
 - backend -> NodeJS
 - baza de date -> SQLite (momentan)
@@ -9,12 +9,12 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 ○ Profesor <br>
 ○ Student
 
-Profesor:
+### Profesor:
 - se poate loga
 - poate vedea o lista cu toate proiectele si evaluarea finala (bazate pe media notelor acordate intr-un mod anonim) pentru fiecare proiect, fără a vedea însă identitatea membrilor juriului (permisiune speciala pentru entitatea "profesor"), insa poate vedea membrii echipei proiectului
 - poate veadea listsa cu toti studentii pe care acestia i-a adaugat
 
-Student:
+### Student:
 - se poate loga
 - poate adauga un proiect
 - poate defini livrabile partiale pentru un anumit proiect deja adaugat
@@ -23,7 +23,7 @@ Student:
 
 Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
-Steps:
+*** ## Steps:***
 1. Descrierea sistemului si a functionalitatilor
 2. Proiectarea bazei de date
 3. Creare serviciilor REST
@@ -38,11 +38,13 @@ Steps:
 - [x] 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)<br>
 - [x] 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
  ```
+     cd backend
      npm i
      npm run server
  ```
-- [x] 4. Ne poziționăm în directorul backend unde instalam **node modules** și pornim aplicația:
+- [x] 4. Ne poziționăm în directorul frontend unde instalam **node modules** și pornim aplicația:
  ```
+    cd frontend
     npm i
     npm start
  ```
@@ -94,7 +96,9 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
 ```json
 "authResponse": "DENIED"
 ```
-        
+
+
+*******
 [DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
 1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
 2. STUDENT LIDER DE ECHIPA (o sa fie un flag la nivel de tabela Team) -> READ & MODIFY MODE
