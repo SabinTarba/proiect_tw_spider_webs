@@ -33,8 +33,8 @@ Steps:
 7. Crearea interfetei
 8. Testing
 
-##Funcționalități:
-1. Utilizăm funcția de clone ```git clone '<repository URL>' ```/ download proiectului de pe git urmând să îl dezarhivăm și să deschidem folderul din VS Code.
+## Funcționalități:
+1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și să deschidem folderul din VS Code.
 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)
 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
  ```
