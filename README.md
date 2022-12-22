@@ -80,6 +80,6 @@ BASE_STUDENT_API_URL: <i>localhost:8080/students</i> <br><br>
    "authResponse": "DENIED"
 }<br>
         
-[DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa, cum alegem studentul lider de echipa??
+[DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
 1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
 2. STUDENT LIDER DE ECHIPA (o sa fie un flag la nivel de tabela Team) -> READ & MODIFY MODE
