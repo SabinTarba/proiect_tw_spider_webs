@@ -207,7 +207,7 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async 
         const profId = Number(req.params.professorId);
         const requiredNoStudentsPerTeam = Number(req.params.option);
 
-        let students = await Student.findAll({ where: { professorId: profId }, raw: true });
+        let students = await (await Student.findAll({ where: { professorId: profId }, raw: true })).sort(()=>Math.random()-0.5);
         const noTotalStudents = students.length;
 
         const noTeamsResulted = Math.trunc(noTotalStudents / requiredNoStudentsPerTeam); // complete teams
