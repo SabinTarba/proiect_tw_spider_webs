@@ -33,7 +33,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 7. Crearea interfetei
 8. Testing
 
-# Instrucțiuni de rulare:
+# ***Instrucțiuni de rulare:***
 - [x] 1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și  să deschidem folderul din VS Code.<br>
 - [x] 2. Ne poziționăm în directorul principal, utilizând linia de comanda, de exemplu: ```cd proiect``` (unde proiect este folderul principal)<br>
 - [x] 3. Ne poziționăm în directorul backend, unde instalam **node modules** și pornim server-ul, comenzile fiind:
@@ -51,7 +51,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 - [x] 5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
 
 
-# API documentation
+# ***API documentation:***
 ```SERVER: localhost```
 ```PORT: 8080```
 
