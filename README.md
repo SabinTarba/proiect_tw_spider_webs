@@ -1,5 +1,4 @@
 # Proiect TW - echipa Spider-webs - Anonymous grading- grupa 1091E<br>(Tarba Sabin și Stoica Oana Larisa) 💯
-<br>
 *******
 # ***Tehnologii:***
 - frontend -> React
@@ -37,7 +36,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 7. Crearea interfetei
 8. Testing
 
-<br><br>
+<br>
 *******
 <br>
 
