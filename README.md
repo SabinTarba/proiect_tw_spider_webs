@@ -50,7 +50,8 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
  ```
 - [x] 5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
 
-<br><br>*******
+<br><br>
+*******
 # ***API documentation:***
 ```SERVER: localhost```
 ```PORT: 8080```
