@@ -1,5 +1,6 @@
 # Proiect TW - echipa Spider-webs - Anonymous grading- grupa 1091E<br>(Tarba Sabin și Stoica Oana Larisa) 💯
-
+<br><br>
+*******
 # ***Tehnologii:***
 - frontend -> React
 - backend -> NodeJS
@@ -23,6 +24,9 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 
 Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
+<br><br>
+*******
+
 # ***Steps:***
 1. Descrierea sistemului si a functionalitatilor
 2. Proiectarea bazei de date
@@ -32,6 +36,9 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 6. Creare design-ului pentru frontend
 7. Crearea interfetei
 8. Testing
+
+<br><br>
+*******
 
 # ***Instrucțiuni de rulare:***
 - [x] 1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și  să deschidem folderul din VS Code.<br>
