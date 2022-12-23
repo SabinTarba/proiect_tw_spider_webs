@@ -36,9 +36,9 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 7. Crearea interfetei
 8. Testing
 
-<br>
+<br><br>
 *******
-<br>
+
 
 # ***Instrucțiuni de rulare:***
 - [x] 1. Utilizăm funcția de clone ```git clone https://github.com/SabinTarba/proiect_tw_spider_webs.git ```/ download proiectului de pe git urmând să îl dezarhivăm și  să deschidem folderul din VS Code.<br>
