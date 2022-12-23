@@ -50,14 +50,13 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
  ```
 - [x] 5. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
 
-
+<br><br>*******
 # ***API documentation:***
 ```SERVER: localhost```
 ```PORT: 8080```
 
-
-## <u><strong>Professor</strong></u> 🧑‍🏫 <br><br><br>
-BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>*******
+## <u><strong>Professor</strong></u> 🧑‍🏫 <br><br>
+BASE_PROFESSOR_API_URL: <i>localhost:8080/professors</i> <br><br>
 <strong>```POST```</strong> request -> BASE_PROFESSOR_API_URL -> save a professor <br> 
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL -> get all professors <br>
 <strong>```GET```</strong> request -> BASE_PROFESSOR_API_URL/students -> get all professors and their students <br>
