@@ -23,7 +23,7 @@ Aplicatia in sine permite logarea utilizatorilor in functie de anumite roluri si
 
 Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele profesorului, echipa si nota proiectului evaluat anonim de catre juriul de studenti.
 
-<br>
+<br><br>
 *******
 
 # ***Steps:***
@@ -36,7 +36,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 7. Crearea interfetei
 8. Testing
 
-<br>
+<br><br>
 *******
 
 
