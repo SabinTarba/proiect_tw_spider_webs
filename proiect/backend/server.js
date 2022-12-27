@@ -1,9 +1,9 @@
 import express from 'express';
 import { Professor } from './entity/Professor.js';
 import { Student } from './entity/Student.js';
+import { Team } from './entity/Team.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { Team } from './entity/Team.js';
 import { Sequelize } from 'sequelize';
 
 
@@ -20,9 +20,159 @@ const sequelize = new Sequelize({
     storage: 'database.sqlite'
 });
 
+
+
+
+app.get(`/sync`, (req, res) => {
+
+
+    try {
+        Team.drop();
+        Student.drop();
+        Professor.drop();
+
+        Professor.hasMany(Student);
+        Student.belongsTo(Professor);
+
+        Team.hasMany(Student);
+        Student.belongsTo(Team);
+
+        Professor.hasMany(Team);
+        Team.belongsTo(Professor);
+
+        Professor.sync();
+        Student.sync();
+        Team.sync();
+
+        sequelize.sync({ force: true });
+
+        res.send({ response: "SUCCESS" });
+    }
+
+
+    catch (ex) {
+        res.send({ response: "SOMETHING WENT WRONG" });
+    }
+
+
+})
+
+app.get(`/data/professors`, async (req, res) => {
+    const professors = [
+        {
+            lastName: "Tarba",
+            firstName: "Sabin",
+            email: "sabintarba01@gmail.com",
+            password: "parola mea"
+        },
+        {
+            lastName: "Stoica",
+            firstName: "Oana",
+            email: "stoicaoan@gmail.com",
+            password: "parola oana"
+        },
+        {
+            lastName: "Ionescu",
+            firstName: "Vlad",
+            email: "vladionescu@gmail.com",
+            password: "321dsaasda"
+        }
+    ];
+
+    try {
+        for (let professor of professors)
+            await Professor.create(professor);
+
+        res.send({ message: "SUCCESS" });
+
+    }
+    catch (ex) {
+        res.send({ message: "SOMETHING WENT WRONG" });
+    }
+
+
+
+
+
+})
+
+app.get(`/data/students`, async (req, res) => {
+    const students = [
+        {
+            lastName: "Toma",
+            firstName: "Laurentiu",
+            email: "tomalaurentiustud@gmail.com",
+            password: "oparolafoartebunajij1",
+            class: "1091",
+            series: "E",
+            professorId: 1
+        },
+        {
+            lastName: "Mihalache",
+            firstName: "Andrei",
+            email: "mihalacheandreitud@gmail.com",
+            password: "parolastudMiha",
+            class: "1088",
+            series: "D",
+            professorId: 1
+        },
+        {
+            lastName: "Popescu",
+            firstName: "Alina",
+            email: "popescualinastud@gmail.com",
+            password: "oslkc#@!a",
+            class: "1085",
+            series: "C",
+            professorId: 1
+        },
+        {
+            lastName: "Davidescu",
+            firstName: "Maria",
+            email: "davidescumariastud@gmail.com",
+            password: "studemyjde",
+            class: "1078",
+            series: "C",
+            professorId: 1
+        },
+        {
+            lastName: "Gheorghe",
+            firstName: "Gigel",
+            email: "gheorgegigelstud@gmail.com",
+            password: "ghgigel",
+            class: "1092",
+            series: "E",
+            professorId: 1
+        },
+        {
+            lastName: "Marin",
+            firstName: "Andreea",
+            email: "marinandreeastud@gmail.com",
+            password: "mandreea12",
+            class: "1093",
+            series: "F",
+            professorId: 1
+        }
+    ];
+
+
+    try {
+        for (let student of students)
+            await Student.create(student);
+
+        res.send({ message: "SUCCESS" });
+
+    }
+    catch (ex) {
+        res.send({ message: "SOMETHING WENT WRONG" });
+    }
+})
+
 /*
    API -> Entity: Professor
 */
+
+
+
 
 const PROFESSOR_API_BASE_PATH = 'professors';
 
@@ -334,6 +484,18 @@ app.get(`/${TEAM_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
     Team.findByPk(id).then((team) => team != null ? res.send(team) : res.send({ status: "No data found!" }));
+})
+
+
+app.post(`/${TEAM_API_BASE_PATH}/setLeader`, (req, res) => {
+    const { teamId, studentId } = req.body;
+
+    Team.update(
+        { leaderId: studentId },
+        { where: { id: teamId } }
+    ).then(() => res.send({ status: "SUCCESS" }))
+        .catch(() => res.send({ status: "FAILURE" }))
+
 })
 
 

@@ -9,6 +9,8 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { MdDelete } from 'react-icons/md';
 import { SlPeople } from 'react-icons/sl';
+import { BsFlag } from 'react-icons/bs';
+import Form from 'react-bootstrap/Form';
 
 
 
@@ -16,11 +18,25 @@ const ListOfTeams = () => {
 
     const loggedUser = getLoggedUser();
     const [professorTeams, setProfessorTeams] = useState({});
+
     const [showDialogDeleteOneTeam, setShowDialogDeleteOneTeam] = useState(false);
     const [showDialogDeleteAllTeams, setShowDialogDeleteAllTeams] = useState(false);
     const [showDialogTeammates, setShowDialogTeammates] = useState(false);
+    const [showDialogSetLeader, setShowDialogSetLeader] = useState(false);
+
     const [hasTeams, setHasTeams] = useState();
     const [teamStudents, setTeamStudents] = useState([]);
+    const [leaderId, setLeaderId] = useState();
+    const [currentTeamId, setCurrenTeamId] = useState();
+
+
+
+    const setLeaderForTeam = (teamId, studentId) => {
+        TEAM_SERVICE.setLeader(teamId, studentId).then(res => {
+            if (res.status === 200)
+                window.location.reload();
+        })
+    }
 
     const deleteTeam = (id) => {
         TEAM_SERVICE.deleteTeamById(id).then(res => {
@@ -97,7 +113,7 @@ const ListOfTeams = () => {
                             <th>#ID</th>
                             <th>Team name</th>
                             <th>Number of students</th>
-                            <th>Team leader</th>
+                            <th>Team leader (student id)</th>
                             <th>Professor full name</th>
                         </tr>
                     </thead>
@@ -110,57 +126,84 @@ const ListOfTeams = () => {
                                     <td>{team.id}</td>
                                     <td>{team.name}</td>
                                     <td>{team.noStudents}</td>
-                                    <td></td>
+                                    <td>{team.leaderId}</td>
                                     <td>{professorTeams.lastName + " " + professorTeams.firstName}</td>
                                     <td className="d-flex justify-content-around">
 
-                                        <MdDelete color="red" size={25} onClick={() => setShowDialogDeleteOneTeam(true)} cursor="pointer"></MdDelete>
+                                        <MdDelete color="red" size={25} onClick={() => { setShowDialogDeleteOneTeam(true); setCurrenTeamId(team.id) }} cursor="pointer"></MdDelete>
 
-                                        {showDialogDeleteOneTeam &&
-                                            <Modal show={showDialogDeleteOneTeam} onHide={() => setShowDialogDeleteOneTeam(false)}>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>Confirmation dialog</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body><p>Are you sure you want to delete this team?</p></Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={() => setShowDialogDeleteOneTeam(false)}>
-                                                        No
-                                                    </Button>
-                                                    <Button variant="danger" onClick={() => { setShowDialogDeleteOneTeam(false); deleteTeam(team.id) }}>
-                                                        Yes
-                                                    </Button>
-                                                </Modal.Footer>
-                                            </Modal>
-                                        }
-
-                                        <SlPeople color="green" size={20} onClick={() => { setShowDialogTeammates(true); getStudentsByTeam(team.id) }} cursor="pointer"></SlPeople>
-
-                                        {showDialogTeammates &&
-                                            <Modal show={showDialogTeammates} onHide={() => { setShowDialogTeammates(false) }} size="lg"
-                                                aria-labelledby="contained-modal-title-vcenter"
-                                                centered>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title id="contained-modal-title-vcenter">
-                                                        Team no. {teamStudents?.id} - {teamStudents?.name} - STUDENTS ({teamStudents?.students?.length})
-
-                                                    </Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    <ul>
-                                                        {teamStudents?.students?.map(student =>
-                                                            <li>{`${student.lastName} ${student.firstName}, ${student.email},${student.class}${student.series}`}</li>
-                                                        )}
-                                                    </ul>
-                                                </Modal.Body>
-                                                <Modal.Footer>
-                                                    <Button variant="secondary" onClick={() => { setShowDialogTeammates(false) }}>
-                                                        Close
-                                                    </Button>
-                                                </Modal.Footer>
-                                            </Modal>
-                                        }
+                                        <Modal show={showDialogDeleteOneTeam} onHide={() => setShowDialogDeleteOneTeam(false)}>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title>Confirmation dialog</Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body><p>Are you sure you want to delete this team?</p></Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="secondary" onClick={() => setShowDialogDeleteOneTeam(false)}>
+                                                    No
+                                                </Button>
+                                                <Button variant="danger" onClick={() => { setShowDialogDeleteOneTeam(false); deleteTeam(currentTeamId) }}>
+                                                    Yes
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
 
 
+                                        <SlPeople color="green" size={20} onClick={() => { setShowDialogTeammates(true); getStudentsByTeam(team.id); setCurrenTeamId(team.id) }} cursor="pointer"></SlPeople>
+
+                                        <Modal show={showDialogTeammates} onHide={() => { setShowDialogTeammates(false) }} size="lg"
+                                            aria-labelledby="contained-modal-title-vcenter"
+                                            centered>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title id="contained-modal-title-vcenter">
+                                                    Team no. {teamStudents?.id} - {teamStudents?.name} - STUDENTS ({teamStudents?.students?.length})
+
+                                                </Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>
+                                                <ul>
+                                                    {teamStudents?.students?.map(student =>
+                                                        <li>{`${student.lastName} ${student.firstName}, ${student.email},${student.class}${student.series}`}</li>
+                                                    )}
+                                                </ul>
+                                            </Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="secondary" onClick={() => { setShowDialogTeammates(false) }}>
+                                                    Close
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
+
+
+
+                                        <BsFlag color='orange' size={20} cursor="pointer" onClick={() => { setShowDialogSetLeader(true); getStudentsByTeam(team.id); setCurrenTeamId(team.id) }}></BsFlag>
+
+                                        <Modal show={showDialogSetLeader} onHide={() => { setShowDialogSetLeader(false) }} size="lg"
+                                            aria-labelledby="contained-modal-title-vcenter"
+                                            centered>
+                                            <Modal.Header closeButton>
+                                                <Modal.Title id="contained-modal-title-vcenter">
+                                                    Choose leader for team {teamStudents?.name} (no. {teamStudents?.id})
+
+                                                </Modal.Title>
+                                            </Modal.Header>
+                                            <Modal.Body>
+                                                <Form.Select onChange={(e) => setLeaderId(Number(e.target.value))}>
+                                                    <option>Choose student</option>
+                                                    {teamStudents?.students?.map(student => {
+                                                        return <option key={student.id} value={student.id}>{student.firstName + " " + student.lastName}</option>
+                                                    })}
+
+                                                </Form.Select>
+                                            </Modal.Body>
+                                            <Modal.Footer>
+                                                <Button variant="success" onClick={() => { setShowDialogSetLeader(false); setLeaderForTeam(currentTeamId, leaderId) }}>
+                                                    Submit
+                                                </Button>
+                                                <Button variant="danger" onClick={() => { setShowDialogSetLeader(false) }}>
+                                                    Cancel
+                                                </Button>
+                                            </Modal.Footer>
+                                        </Modal>
 
 
                                     </td>

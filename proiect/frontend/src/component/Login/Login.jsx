@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './login.css';
 import PROFESSOR_SERVICE from '../../services/PROFESSOR_SERVICE.js';
 import STUDENT_SERVICE from '../../services/STUDENT_SERVICE.js'
 import Alert from './Alert';
@@ -25,7 +24,7 @@ const Login = () => {
         email: null,
         password: null
     });
-    const [account, setAccount] = useState(null);
+    const [account, setAccount] = useState(PROFESSOR_ACCOUNT);
     const [displayErrorAlert, setDisplayErrorAlert] = useState(false);
     const [displayInfoAlert, setDisplayInfoAlert] = useState(false);
 
@@ -125,6 +124,7 @@ const Login = () => {
                                 type={'radio'}
                                 id={`inline-'radio'-Professor`}
                                 onChange={() => setAccount(PROFESSOR_ACCOUNT)}
+                                defaultChecked
                                 required
                             />
                             <Form.Check

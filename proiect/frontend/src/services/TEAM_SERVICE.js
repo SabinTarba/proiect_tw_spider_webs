@@ -25,6 +25,10 @@ class TEAM_SERVICE {
     async getTeamById(id) {
         return await axios.get(`${TEAM_API_BASE_PATH}/${id}`);
     }
+
+    async setLeader(teamId, studentId) {
+        return await axios.post(`${TEAM_API_BASE_PATH}/setLeader`, { teamId: teamId, studentId: studentId });
+    }
 }
 
 

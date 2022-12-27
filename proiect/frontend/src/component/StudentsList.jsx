@@ -71,7 +71,7 @@ const StudentsList = () => {
                                     <MdDelete color="red" size={25} onClick={() => setShow(true)} cursor="pointer"></MdDelete>
 
                                     {show &&
-                                        <Modal show={show} onHide={() => setShow(false)}>
+                                        <Modal show={show} onHide={() => setShow(false)} size="lg" >
                                             <Modal.Header closeButton>
                                                 <Modal.Title>Confirmation dialog</Modal.Title>
                                             </Modal.Header>

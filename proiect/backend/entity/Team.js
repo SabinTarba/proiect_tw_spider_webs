@@ -13,6 +13,10 @@ export const Team = sequelize.define('team', {
     noStudents: {
         type: DataTypes.NUMBER,
         allowNull: false
+    },
+    leaderId: {
+        type: DataTypes.NUMBER,
+        allowNull: true
     }
 },
     {

@@ -41,11 +41,6 @@ export const Student = sequelize.define('student', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    teamLeader: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false
-    },
     firstLogin: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
