@@ -9,10 +9,11 @@ import Modal from 'react-bootstrap/Modal';
 import { getLoggedUser } from '../utils/auth';
 
 const StudentsList = () => {
+    const loggedUser = getLoggedUser();
 
     const [show, setShow] = useState(false);
     const [students, setStudents] = useState([]);
-    const loggedUser = getLoggedUser();
+    const [currentStudentId, setCurrentStudentId] = useState();
 
 
     const deleteStudent = (studentID) => {
@@ -68,28 +69,22 @@ const StudentsList = () => {
                                 <td>{student.teamId}</td>
                                 <td className="d-flex justify-content-center">
 
-                                    <MdDelete color="red" size={25} onClick={() => setShow(true)} cursor="pointer"></MdDelete>
+                                    <MdDelete color="red" size={25} onClick={() => { setShow(true); setCurrentStudentId(student.id) }} cursor="pointer"></MdDelete>
 
-                                    {show &&
-                                        <Modal show={show} onHide={() => setShow(false)} size="lg" >
-                                            <Modal.Header closeButton>
-                                                <Modal.Title>Confirmation dialog</Modal.Title>
-                                            </Modal.Header>
-                                            <Modal.Body>Are you sure you want to delete this student?</Modal.Body>
-                                            <Modal.Footer>
-                                                <Button variant="secondary" onClick={() => setShow(false)}>
-                                                    No
-                                                </Button>
-                                                <Button variant="danger" onClick={() => { setShow(false); deleteStudent(student.id) }}>
-                                                    Yes
-                                                </Button>
-                                            </Modal.Footer>
-                                        </Modal>
-                                    }
-
-
-
-
+                                    <Modal show={show} onHide={() => setShow(false)} size="lg" >
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Confirmation dialog</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Are you sure you want to delete this student (id {currentStudentId})?</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button variant="secondary" onClick={() => setShow(false)}>
+                                                No
+                                            </Button>
+                                            <Button variant="danger" onClick={() => { setShow(false); deleteStudent(currentStudentId) }}>
+                                                Yes
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                 </td>
                             </tr>
                         })
