@@ -1,7 +1,7 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import { Student } from './Student.js';
+import { Project } from './Project.js';
 import { Team } from './Team.js';
-
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -42,3 +42,19 @@ export const Professor = sequelize.define('professor', {
 );
 
 
+Professor.hasMany(Student);
+Student.belongsTo(Professor);
+
+Team.hasMany(Student);
+Student.belongsTo(Team);
+
+Professor.hasMany(Team);
+Team.belongsTo(Professor);
+
+Team.hasOne(Project);
+Project.belongsTo(Team);
+
+Professor.sync();
+Student.sync();
+Team.sync();
+Project.sync();

@@ -4,7 +4,7 @@ import { Student } from './entity/Student.js';
 import { Team } from './entity/Team.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { Sequelize } from 'sequelize';
+import { Project } from './entity/Project.js';
 
 
 const app = express();
@@ -15,45 +15,7 @@ app.use(
     cors({ origin: ['http://localhost:3000'] })
 );
 
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'database.sqlite'
-});
 
-
-
-
-app.get(`/sync`, (req, res) => {
-
-
-    try {
-        Team.drop();
-        Student.drop();
-        Professor.drop();
-
-        Professor.hasMany(Student);
-        Student.belongsTo(Professor);
-
-        Team.hasMany(Student);
-        Student.belongsTo(Team);
-
-        Professor.hasMany(Team);
-        Team.belongsTo(Professor);
-
-        Professor.sync({ force: true });
-        Student.sync({ force: true });
-        Team.sync({ force: true });
-
-        res.send({ response: "SUCCESS" });
-    }
-
-
-    catch (ex) {
-        res.send({ response: "SOMETHING WENT WRONG" });
-    }
-
-
-})
 
 app.get(`/data/professors`, async (req, res) => {
     const professors = [
@@ -274,7 +236,7 @@ app.get(`/${STUDENT_API_BASE_PATH}`, (req, res) => {
 app.get(`/${STUDENT_API_BASE_PATH}/:id`, (req, res) => {
     const id = req.params.id;
 
-    Student.findByPk(id).then((student) => student != null ? res.send(student) : res.send({ status: "No data id!" }));
+    Student.findByPk(id).then((student) => student != null ? res.send(student) : res.send({ status: "No data found!" }));
 })
 
 
@@ -497,6 +459,56 @@ app.post(`/${TEAM_API_BASE_PATH}/setLeader`, (req, res) => {
 })
 
 
+/*
+   API -> Entity: Project
+*/
+const PROJECT_API_BASE_PATH = 'projects';
+
+
+app.get(`/${PROJECT_API_BASE_PATH}`, (req, res) => {
+
+    Project.findAll().then((projects) => res.send(projects));
+
+})
+
+
+app.get(`/${PROJECT_API_BASE_PATH}/:id`, (req, res) => {
+    const id = req.params.id;
+
+    Project.findByPk(id).then((project) => project != null ? res.send(project) : res.send({ status: "No data found!" }));
+})
+
+
+app.delete(`/${PROJECT_API_BASE_PATH}/:id`, (req, res) => {
+    const id = req.params.id;
+
+    Project.destroy({
+        where: {
+            id: id
+        }
+    })
+        .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
+})
+
+
+app.post(`/${PROJECT_API_BASE_PATH}`, (req, res) => {
+    Project.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+})
+
+
+app.get(`/${PROJECT_API_BASE_PATH}/team/:teamId`, (req, res) => {
+
+    try {
+        let teamId = Number(req.params.teamId);
+
+        Project.findOne({ where: { teamId: teamId } }).then((project) => project != null ? res.send(project) : res.send({ status: "No data found!" }));
+    }
+    catch (ex) {
+        console.log(ex);
+        res.send({ error: ex })
+    }
+
+})
 
 /*
    PORNIRE SERVER -> PORT: 8080

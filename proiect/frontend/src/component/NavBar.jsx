@@ -7,6 +7,7 @@ import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE.js';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
+import { useNavigate } from 'react-router';
 
 
 
@@ -40,6 +41,18 @@ const navLinks = [
         text: "Information",
         type: STUDENT_ACCOUNT
     },
+    {
+        path: "/dashboard/add-project",
+        textColor: "text-white fw-bold",
+        text: "Create new project",
+        type: STUDENT_ACCOUNT
+    },
+    {
+        path: "/dashboard/project-tasks",
+        textColor: "text-white fw-bold",
+        text: "Project tasks",
+        type: STUDENT_ACCOUNT
+    },
 ]
 
 
@@ -48,13 +61,13 @@ const NavBar = () => {
     const alias = loggedUser?.type === STUDENT_ACCOUNT ? "[student]" : "[professor]";
     const [show, setShow] = useState(false);
     const [option, setOption] = useState();
+    const navigate = useNavigate();
 
 
     const generateTeams = (professorId, option) => {
         PROFESSOR_SERVICE.generateTeams(professorId, option).then(res => {
             if (res.status === 200) {
-                alert("SUCCESS");
-                window.location.reload();
+                navigate("/dashboard/teams-list");
             }
             else {
                 alert("FAILURE");
@@ -104,8 +117,6 @@ const NavBar = () => {
                             </Modal.Footer>
                         </Modal>
                     }
-
-
 
 
                 </Nav>

@@ -11,6 +11,8 @@ import Container from 'react-bootstrap/esm/Container.js';
 import Alert from './Login/Alert.jsx';
 import STUDENT_SERVICE from '../services/STUDENT_SERVICE.js';
 import StudentInfo from './StudentInfo.jsx';
+import CreateProject from './CreateProject.jsx';
+import ProjectTasks from './ProjectTasks.jsx';
 
 
 
@@ -71,6 +73,8 @@ const Dashboard = () => {
                         <Route path='/add-student' element={<AddStudent />} />
                         <Route path='/teams-list' element={<ListOfTeams />} />
                         <Route path='/student-info' element={<StudentInfo />} />
+                        <Route path='/add-project' element={<CreateProject />} />
+                        <Route path='/project-tasks' element={<ProjectTasks />} />
                     </Routes>
                 </>
             }

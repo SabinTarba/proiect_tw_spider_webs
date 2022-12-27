@@ -69,7 +69,7 @@ const AddStudent = () => {
             event.stopPropagation();
         }
         else {
-
+            // facem request-ul aici
             STUDENT_SERVICE.saveStudent(saveStudentRequest).then(res => {
                 if (res.status === 200) {
                     setShowAlert(true);
@@ -77,13 +77,10 @@ const AddStudent = () => {
             }
             )
 
-            // facem request-ul aici
+
         }
 
         setValidated(true);
-
-
-
 
     };
 

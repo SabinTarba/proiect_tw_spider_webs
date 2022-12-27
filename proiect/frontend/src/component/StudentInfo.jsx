@@ -6,7 +6,7 @@ import { getLoggedUser } from '../utils/auth'
 
 const StudentInfo = () => {
     const loggedUser = getLoggedUser();
-    const [professor, setProfessor] = useState({});
+    const [professor, setProfessor] = useState();
     const [team, setTeam] = useState({});
     const [teamStudents, setTeamStudents] = useState([]);
 
@@ -52,7 +52,10 @@ const StudentInfo = () => {
                 <li>Team students: {" "}
                     <span className="text-info">
                         {
-                            teamStudents.map((student, index) => `${student.lastName} ${student.firstName} ${student.class}${student.series}${index !== teamStudents.length - 1 ? ", " : ""}`)
+                            teamStudents?.map((student, index) => `${student.lastName} ${student.firstName} ${student.class}${student.series}${index !== teamStudents.length - 1 ? ", " : ""}`)
+                        }
+                        {
+                            teamStudents === undefined ? "N/A" : null
                         }
                     </span>
                 </li>

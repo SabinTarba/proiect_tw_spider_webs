@@ -58,7 +58,6 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 
 - [x] 5. Trebuie accesate urmatoarele API endpoints pentru a putea testea aplicatia (este un generator de date de test):
  ```
-    [GET] /sync -> pentru crearea tabelelor si a relatiilor dintre ele
     [GET] /data/professors -> pentru a insera data in tabela professors
     [GET] /data/students -> pentru a insera date in tabela students
     
@@ -132,6 +131,7 @@ BASE_TEAM_API_URL: <i>localhost:8080/teams</i> <br><br>
 
 <br><br>
 *******
-[DE FACUT DATA VIITOARE]: tabela Project, adaugare proiect de catre studentul lider de echipa + sa facem un get request special ca sa inseram date de test sa nu mai stam sa le bagam de mana + LIDERUL DE ECHIPA ESTE ALES DE CATRE PROFESOR (List of team page)
-1. STUDENT NORMAL = student membru din echipa care nu are flag-ul de student lider SAU PROFESOR -> READ ONLY MODE
-2. STUDENT LIDER DE ECHIPA (o sa fie un flag la nivel de tabela Team) -> READ & MODIFY MODE
+[DE FACUT DATA VIITOARE]: 
+1. Sa vedem cum putem defini livrabilele (formurile dinamice si etc)
+2. Sa facem astfel incat pagina de livrabile sa fie read only pentru profesori si studentii care nu sunt lideri. Pentru lideri trebuie sa fie read si write.
+3. Sa facem tabela pentru juriu si sa vedem cum alegem juratii.
