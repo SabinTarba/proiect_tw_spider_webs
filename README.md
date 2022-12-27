@@ -57,7 +57,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
  ```
 
 - [x] 5. Trebuie accesate urmatoarele API endpoints pentru a putea testea aplicatia (este un generator de date de test):
-  ```
+ ```
     cd frontend
     npm i
     npm start
