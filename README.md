@@ -62,7 +62,7 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
     [GET] /data/professors -> pentru a insera data in tabela professors
     [GET] /data/students -> pentru a insera date in tabela students
     
-    Exemplu const profesor:
+    Example of professor account:
     - email: sabintarba01@gmail.com
     - password: parola mea
  ```
