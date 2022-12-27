@@ -51,16 +51,16 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
  ```
 - [x] 4. Ne poziționăm în directorul frontend unde instalam **node modules** și pornim aplicația:
  ```
-    /sync
-    /data/professors
-    /data/students
+    cd frontend
+    npm i
+    npm start
  ```
 
 - [x] 5. Trebuie accesate urmatoarele API endpoints pentru a putea testea aplicatia (este un generator de date de test):
  ```
-    cd frontend
-    npm i
-    npm start
+    /sync -> pentru crearea tabelelor si a relatiilor dintre ele
+    /data/professors -> pentru a insera data in tabela professors
+    /data/students -> pentru a insera date in tabela students
  ```
  
 - [x] 6. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
