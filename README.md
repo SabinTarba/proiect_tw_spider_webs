@@ -58,9 +58,9 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
 
 - [x] 5. Trebuie accesate urmatoarele API endpoints pentru a putea testea aplicatia (este un generator de date de test):
  ```
-    /sync -> pentru crearea tabelelor si a relatiilor dintre ele
-    /data/professors -> pentru a insera data in tabela professors
-    /data/students -> pentru a insera date in tabela students
+    [GET] /sync -> pentru crearea tabelelor si a relatiilor dintre ele
+    [GET] /data/professors -> pentru a insera data in tabela professors
+    [GET] /data/students -> pentru a insera date in tabela students
     
     Exemplu const profesor:
     - email: sabintarba01@gmail.com
