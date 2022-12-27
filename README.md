@@ -61,6 +61,10 @@ Functionalitate extra pentru final: creare pdf(stil raport) ce va contine numele
     /sync -> pentru crearea tabelelor si a relatiilor dintre ele
     /data/professors -> pentru a insera data in tabela professors
     /data/students -> pentru a insera date in tabela students
+    
+    Exemplu const profesor:
+    - email: sabintarba01@gmail.com
+    - password: parola mea
  ```
  
 - [x] 6. Suntem direcţionaţi automat spre pagina de LOGIN, de unde paşii sunt deductibili.
