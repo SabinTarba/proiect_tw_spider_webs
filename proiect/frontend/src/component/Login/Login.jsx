@@ -92,14 +92,14 @@ const Login = () => {
             <Container className='m-5'>
                 <Form className="p-3" >
                     <span className="shadow bg-white rounded" style={{
-                        "display": "block",
-                        "font-family": "Poppins-Bold",
-                        "font-size": "40px",
-                        "font-weight": "bold",
-                        "color": "#00008B",
-                        "line-height": "1.2",
-                        "text-align": "center",
-                        "padding-bottom": "10px"
+                        display: "block",
+                        fontFamily: "Poppins-Bold",
+                        fontSize: "40px",
+                        fontWeight: "bold",
+                        color: "#00008B",
+                        lineHeight: "1.2",
+                        textAlign: "center",
+                        paddingBottom: "10px"
                     }}>Login</span>
                     <Form.Group className="mt-4" hasvalidation="true">
                         <Form.Label className='fw-bold fs-5'>E-mail</Form.Label>
@@ -140,7 +140,7 @@ const Login = () => {
                     </Form.Group>
 
                     <Form.Group className="mt-5 text-center" >
-                        <Button type="submit" className="shadow-lg bg-primary rounded text-white w-75" gap-2 variant="primary" size="lg" onClick={(e) => handleFormSubmit(e)}>
+                        <Button type="submit" className="shadow-lg bg-primary rounded text-white w-75" gap={2} variant="primary" size="lg" onClick={(e) => handleFormSubmit(e)}>
                             Login
                         </Button>
                     </Form.Group>

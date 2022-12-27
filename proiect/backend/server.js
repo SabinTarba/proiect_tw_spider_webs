@@ -40,11 +40,9 @@ app.get(`/sync`, (req, res) => {
         Professor.hasMany(Team);
         Team.belongsTo(Professor);
 
-        Professor.sync();
-        Student.sync();
-        Team.sync();
-
-        sequelize.sync({ force: true });
+        Professor.sync({ force: true });
+        Student.sync({ force: true });
+        Team.sync({ force: true });
 
         res.send({ response: "SUCCESS" });
     }
