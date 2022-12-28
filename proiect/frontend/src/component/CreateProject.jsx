@@ -101,7 +101,7 @@ const CreateProject = () => {
                             </Container>
                             <Container className="w-50" >
                                 {
-                                    showAlert && <Alert message="Project has been successfully created!" bgColor={"green"} />
+                                    showAlert && <Alert message="Project & its tasks have been successfully created!" bgColor={"green"} />
                                 }
                             </Container>
 

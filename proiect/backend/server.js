@@ -5,6 +5,8 @@ import { Team } from './entity/Team.js';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Project } from './entity/Project.js';
+import { Task } from './entity/Task.js';
+
 
 
 const app = express();
@@ -491,8 +493,27 @@ app.delete(`/${PROJECT_API_BASE_PATH}/:id`, (req, res) => {
 })
 
 
-app.post(`/${PROJECT_API_BASE_PATH}`, (req, res) => {
-    Project.create(req.body).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+app.post(`/${PROJECT_API_BASE_PATH}`, async (req, res) => {
+
+    try {
+        await Project.create(req.body).then(newProject => {
+            for (let i = 0; i < newProject.noTasks; i++) {
+                Task.create({
+                    taskNumber: i + 1, dueDate: new Date("2024-01-01"), projectId: newProject.id
+                });
+            }
+        })
+
+
+
+        res.send({ status: "SUCCESS" });
+    }
+    catch (ex) {
+        res.send({ error: ex, status: "FAILURE" });
+    }
+
+
+
 })
 
 
@@ -501,7 +522,7 @@ app.get(`/${PROJECT_API_BASE_PATH}/team/:teamId`, (req, res) => {
     try {
         let teamId = Number(req.params.teamId);
 
-        Project.findOne({ where: { teamId: teamId } }).then((project) => project != null ? res.send(project) : res.send({ status: "No data found!" }));
+        Project.findOne({ where: { teamId: teamId }, include: [{ model: Task }] }).then((project) => project != null ? res.send(project) : res.send({ status: "No data found!" }));
     }
     catch (ex) {
         console.log(ex);
@@ -509,6 +530,50 @@ app.get(`/${PROJECT_API_BASE_PATH}/team/:teamId`, (req, res) => {
     }
 
 })
+
+
+/*
+   API -> Entity: Task
+*/
+
+const TASK_API_BASE_PATH = 'tasks';
+
+app.get(`/${TASK_API_BASE_PATH}/project/:projectId`, (req, res) => {
+    try {
+        const projectId = Number(req.params.projectId);
+
+        Task.findAll({ where: { projectId: projectId } }).then(tasks => tasks !== null ? res.send(tasks) : res.send({ status: "No data found!" }));
+    }
+    catch (ex) {
+        res.send({ error: ex });
+    }
+});
+
+app.put(`/${TASK_API_BASE_PATH}/saveProgress`, (req, res) => {
+    try {
+        const { taskNumber, projectId, link, linkType, comment, dueDate } = req.body;
+
+        Task.update(
+            {
+                link: link,
+                linkType: linkType,
+                comment: comment,
+                dueDate: dueDate,
+                dueDateAlreadyUpdated: true
+            },
+            {
+                where: {
+                    taskNumber: taskNumber,
+                    projectId: projectId
+                }
+            }
+        ).then(arrayResponse => res.send({ rowsAffected: arrayResponse[0] }));
+    }
+    catch (ex) {
+        res.send({ error: ex });
+    }
+});
+
 
 /*
    PORNIRE SERVER -> PORT: 8080

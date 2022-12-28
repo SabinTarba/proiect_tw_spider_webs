@@ -132,6 +132,7 @@ BASE_TEAM_API_URL: <i>localhost:8080/teams</i> <br><br>
 <br><br>
 *******
 [DE FACUT DATA VIITOARE]: 
-1. Sa vedem cum putem defini livrabilele (formurile dinamice si etc)
-2. Sa facem astfel incat pagina de livrabile sa fie read only pentru profesori si studentii care nu sunt lideri. Pentru lideri trebuie sa fie read si write.
-3. Sa facem tabela pentru juriu si sa vedem cum alegem juratii.
+1. Sa putem definit un dueDate MAXIM pe fiecare profesor (iar acest dueDate maxim sa fie data maxima pentru studentii lui - atunci cand isi seteaza dueDate la task-uri fiecare echipa)
+2. Dupa ce trece dueDate-ul setat global de profesor, trebuie sa inceapa jurizarea care va dura 3 zile.
+(trebuie facuta pagina sau trebuie sa vedem cum acordam notele)
+3. Dupa jurizare, trebuie sa facem cumva sa calculam punctajele si sa le afisam profesorului

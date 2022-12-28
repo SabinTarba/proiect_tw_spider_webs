@@ -46,7 +46,7 @@ const StudentInfo = () => {
                 <li>Series: <span className="text-info">{loggedUser?.series}</span></li>
                 <li>Class: <span className="text-info">{loggedUser?.class}</span></li>
                 <li>Professor: <span className="text-info">{professor?.lastName + " " + professor?.firstName}</span></li>
-                <li>Team leader: <span className="text-info">{loggedUser?.id === team.leaderId ? "Yes" : "No"}</span></li>
+                <li>Team leader: <span className="text-info">{loggedUser?.id === team.leaderId ? "Yes! Due date for tasks can be changed once. After that, you won't be able to update it anymore. If the due date is reached, then you won't be able to register the progress for task as well!" : "No"}</span></li>
                 <li>Team number: <span className="text-info">{loggedUser?.teamId === null ? "You don't belong to any team! Your professor will generate randomly the teams when all students are registered." : loggedUser?.teamId}</span></li>
                 <li>Team name: <span className="text-info">{loggedUser?.teamId === null ? "You don't have a team!" : team.name}</span></li>
                 <li>Team students: {" "}
