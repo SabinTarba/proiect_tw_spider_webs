@@ -3,6 +3,7 @@ import { Student } from './Student.js';
 import { Project } from './Project.js';
 import { Team } from './Team.js';
 import { Task } from './Task.js';
+import { Jury } from './Jury.js';
 
 const sequelize = new Sequelize({
     dialect: 'sqlite',
@@ -34,6 +35,10 @@ export const Professor = sequelize.define('professor', {
         type: DataTypes.STRING,
         allowNull: false
     },
+    generalDueDate: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
 },
     {
         timestamps: false,
@@ -63,3 +68,4 @@ Student.sync();
 Team.sync();
 Project.sync();
 Task.sync();
+Jury.sync();

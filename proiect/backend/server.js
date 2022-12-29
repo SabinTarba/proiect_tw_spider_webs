@@ -6,7 +6,8 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import { Project } from './entity/Project.js';
 import { Task } from './entity/Task.js';
-
+import { Jury } from './entity/Jury.js';
+import { Op } from 'sequelize';
 
 
 const app = express();
@@ -222,6 +223,22 @@ app.post(`/${PROFESSOR_API_BASE_PATH}/auth`, async (req, res) => {
 })
 
 
+app.post(`/${PROFESSOR_API_BASE_PATH}/config/setGeneralDueDate`, (req, res) => {
+    const { newGeneralDueDate, id } = req.body;
+
+    Professor.update(
+        {
+            generalDueDate: new Date(newGeneralDueDate)
+        },
+        {
+            where: {
+                id: id
+            }
+        }
+    ).then(() => res.send({ status: "SUCCESS" })).catch(() => res.send({ status: "FAILURE" }));
+})
+
+
 /*
    API -> Entity: Student
 */
@@ -375,6 +392,8 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async 
         //variable to track how many students have been assigned to a team
         let assignedStudents = 0;
 
+        let studentsExcluded = [];
+
 
         //assign the students to the above created teams
         for (let i = teams.length - 1; i >= 0; i--) {
@@ -382,9 +401,24 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async 
                 Student.update(
                     { teamId: lastTeamId },
                     { where: { id: students[j].id } }
+
+
                 );
+
+                studentsExcluded.push(students[j].id);
             }
 
+            console.log(lastTeamId);
+            console.log(studentsExcluded);
+
+
+            for (let i = 0; i < students.length; i++) {
+                if (!studentsExcluded.includes(students[i].id)) {
+                    Jury.create({ studentId: students[i].id, teamId: lastTeamId })
+                }
+            }
+
+            studentsExcluded = [];
             lastTeamId--;
             assignedStudents += teams[i].noStudents;
         }
@@ -422,8 +456,26 @@ app.delete(`/${TEAM_API_BASE_PATH}/:id`, (req, res) => {
         .then((rowsAffected) => res.send({ rowsAffected: rowsAffected }));
 })
 
-app.delete(`/${TEAM_API_BASE_PATH}/professor/:professorId`, (req, res) => {
+app.delete(`/${TEAM_API_BASE_PATH}/professor/:professorId`, async (req, res) => {
     const professorId = req.params.professorId;
+
+    let listOfTeamIDs = [];
+
+    const teams = await Team.findAll({
+        where: {
+            professorId: professorId
+        }
+    })
+
+    for (let team of teams)
+        listOfTeamIDs.push(team.id);
+
+
+    Jury.destroy({
+        where: {
+            teamId: { [Op.in]: listOfTeamIDs }
+        }
+    })
 
     Team.destroy({
         where: {
