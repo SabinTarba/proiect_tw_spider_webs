@@ -33,6 +33,10 @@ class PROFESSOR_SERVICE {
         return await axios.get(`${PROFESSOR_API_BASE_PATH}/generateTeams/${professorId}/${option}`);
     }
 
+    async setGeneralDueDate(requestBody) {
+        return await axios.post(`${PROFESSOR_API_BASE_PATH}/config/setGeneralDueDate`, requestBody);
+    }
+
 
 }
 

@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/esm/Col.js';
 import dateFormat from 'dateformat';
 import TASK_SERVICE from '../services/TASK_SERVICE.js';
 import Alert from '../component/Login/Alert';
+import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE.js';
 
 const ProjectTasks = () => {
     const loggedUser = getLoggedUser();
@@ -16,6 +17,7 @@ const ProjectTasks = () => {
     const teamId = loggedUser?.teamId;
     const [showMessage, setShowMessage] = useState(false);
     const [tasks, setTasks] = useState([]);
+    const [professor, setProfessor] = useState();
 
 
     useEffect(() => {
@@ -30,10 +32,20 @@ const ProjectTasks = () => {
                 else setShowMessage(true);
 
             })
+
+
         }
         else setShowMessage(true);
 
-    }, [teamId]);
+        if (!isNaN(loggedUser?.professorId && loggedUser?.professorId !== null)) {
+            PROFESSOR_SERVICE.getProfessorById(loggedUser?.professorId).then(res => {
+                if (res.status === 200 && res.data.status !== "No data found!")
+                    setProfessor(res.data);
+            })
+
+        }
+
+    }, [teamId, loggedUser?.professorId]);
 
 
     const handleSubmit = (index) => {
@@ -103,7 +115,7 @@ const ProjectTasks = () => {
                                                 <Col className="col-md-2">
                                                     <Form.Group className="mb-3">
                                                         <Form.Label className={task.dueDateAlreadyUpdated ? "text-danger" : ""}>{task.dueDateAlreadyUpdated ? "Already updated [READ ONLY]" : "Due date"}</Form.Label>
-                                                        <Form.Control readOnly={task.dueDateAlreadyUpdated} type="date" defaultValue={dateFormat(task.dueDate, "yyyy-mm-dd")} onChange={(e) => {
+                                                        <Form.Control readOnly={task.dueDateAlreadyUpdated} min={dateFormat(new Date(), "yyyy-mm-dd")} max={dateFormat(professor?.generalDueDate, "yyyy-mm-dd")} type="date" defaultValue={dateFormat(task.dueDate, "yyyy-mm-dd")} onChange={(e) => {
 
                                                             for (let task_ of tasks)
                                                                 if (task.taskNumber === task_.taskNumber) {

@@ -2,12 +2,14 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import { logOutUSer, getLoggedUser } from '../utils/auth.js';
+import { logOutUSer, getLoggedUser, saveLoggedUser } from '../utils/auth.js';
 import PROFESSOR_SERVICE from '../services/PROFESSOR_SERVICE.js';
 import Modal from 'react-bootstrap/Modal';
 import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import { useNavigate } from 'react-router';
+import dateFormat from 'dateformat';
+import { useEffect } from 'react';
 
 
 
@@ -52,7 +54,7 @@ const navLinks = [
         textColor: "text-white fw-bold",
         text: "Project tasks",
         type: STUDENT_ACCOUNT
-    },
+    }
 ]
 
 
@@ -60,8 +62,11 @@ const NavBar = () => {
     const loggedUser = getLoggedUser();
     const alias = loggedUser?.type === STUDENT_ACCOUNT ? "[student]" : "[professor]";
     const [show, setShow] = useState(false);
+    const [dueDateShow, setDueDateShow] = useState(false);
     const [option, setOption] = useState();
     const navigate = useNavigate();
+    const [generalDueDate, setGeneralDueDate] = useState();
+    const [professorDueDate, setProfessorDueDate] = useState();
 
 
     const generateTeams = (professorId, option) => {
@@ -74,6 +79,27 @@ const NavBar = () => {
             }
         })
     }
+
+    const saveProfessorGeneralNewDate = (professorId, newGeneralDueDate) => {
+        PROFESSOR_SERVICE.setGeneralDueDate({ id: professorId, newGeneralDueDate: newGeneralDueDate }).then(res => {
+            console.log({ id: professorId, newGeneralDueDate: newGeneralDueDate })
+            if (res.status === 200 && res.data.status === "SUCCESS") {
+                saveLoggedUser({ ...loggedUser, generalDueDate: new Date(newGeneralDueDate) });
+            }
+        })
+    }
+
+
+    useEffect(() => {
+
+        if (!isNaN(loggedUser?.professorId) && !isNaN(loggedUser?.type) && loggedUser?.type !== null && loggedUser?.professorId !== null)
+            if (loggedUser?.type === STUDENT_ACCOUNT)
+                PROFESSOR_SERVICE.getProfessorById(loggedUser?.professorId).then(res => {
+                    if (res.status === 200 && res.data.status !== "No data found!") {
+                        setProfessorDueDate(res.data.generalDueDate);
+                    }
+                })
+    }, [loggedUser?.professorId, loggedUser?.type])
 
     return (
         <Navbar bg='primary' variant='dark'>
@@ -89,34 +115,58 @@ const NavBar = () => {
 
                     }
 
+
+                    {loggedUser?.type === STUDENT_ACCOUNT && new Date() >= new Date(professorDueDate) && new Date() <= new Date().setDate(new Date(professorDueDate).getDate() + 3) &&
+                        < Nav.Link href={"/dashboard/grading-projects"} className={"text-white fw-bold"}>Grade projects</Nav.Link>
+                    }
+
                     {loggedUser?.type === PROFESSOR_ACCOUNT &&
                         <Button className="text-white fw-bold" variant="success" onClick={() => setShow(true)}>Generate teams</Button>
                     }
-                    {show &&
-                        <Modal show={show} onHide={() => setShow(false)}>
-                            <Modal.Header closeButton>
-                                <Modal.Title>Generate teams</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                                <Form.Select aria-label="Default select example" onChange={(e) => setOption(e.target.value)}>
-                                    <option>Choose the number of students per team</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </Form.Select>
-                            </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="danger" onClick={() => setShow(false)}>
-                                    Cancel
-                                </Button>
-                                <Button variant="success" onClick={() => { setShow(false); generateTeams(loggedUser.id, option) }}>
-                                    Submit
-                                </Button>
-                            </Modal.Footer>
-                        </Modal>
+                    <Modal show={show} onHide={() => setShow(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Generate teams</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form.Select aria-label="Default select example" onChange={(e) => setOption(e.target.value)}>
+                                <option>Choose the number of students per team</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </Form.Select>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="danger" onClick={() => setShow(false)}>
+                                Cancel
+                            </Button>
+                            <Button variant="success" onClick={() => { setShow(false); generateTeams(loggedUser.id, option) }}>
+                                Submit
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
+                    {loggedUser?.type === PROFESSOR_ACCOUNT &&
+                        <Button className="text-white fw-bold" variant="info" onClick={() => setDueDateShow(true)}>Set general due date</Button>
                     }
+                    <Modal show={dueDateShow} onHide={() => setDueDateShow(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Choose general due date</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <Form.Control type="date" defaultValue={dateFormat(loggedUser?.generalDueDate, "yyyy-mm-dd")} onChange={(e) => setGeneralDueDate(e.target.value)} />
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="danger" onClick={() => setDueDateShow(false)}>
+                                Cancel
+                            </Button>
+                            <Button variant="success" onClick={() => { setDueDateShow(false); saveProfessorGeneralNewDate(loggedUser?.id, generalDueDate); }}>
+                                Submit
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+
 
 
                 </Nav>
