@@ -102,27 +102,36 @@ const NavBar = () => {
     }, [loggedUser?.professorId, loggedUser?.type])
 
     return (
-        <Navbar bg='primary' variant='dark'>
+        <Navbar bg='primary' variant='dark' className='navbar navbar-expand-lg'>
             <Container>
-                <Nav className="me-auto">
+    <div className="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul className="navbar-nav ml-auto">
+                <Nav className="me-auto navbar navbar-expand-lg">
+                    
                     {
+                        
                         navLinks.map(link => {
                             if (link.type === loggedUser?.type)
                                 return <Nav.Link key={link.path} href={link.path} className={link.textColor}>{link.text}</Nav.Link>
 
                             return null;
                         })
+                        
 
                     }
+                    
 
-
+                        <li className="nav-item">
                     {loggedUser?.type === STUDENT_ACCOUNT && new Date() >= new Date(professorDueDate) && new Date() <= new Date().setDate(new Date(professorDueDate).getDate() + 3) &&
                         < Nav.Link href={"/dashboard/grading-projects"} className={"text-white fw-bold"}>Grade projects</Nav.Link>
                     }
-
+                        </li>
+                    <li className="nav-item">
                     {loggedUser?.type === PROFESSOR_ACCOUNT &&
                         <Button className="text-white fw-bold" variant="success" onClick={() => setShow(true)}>Generate teams</Button>
                     }
+                    </li>
+                    <li className="nav-item">
                     <Modal show={show} onHide={() => setShow(false)}>
                         <Modal.Header closeButton>
                             <Modal.Title>Generate teams</Modal.Title>
@@ -146,10 +155,13 @@ const NavBar = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
-
+                    </li>
+                    <li className="nav-item ml-5 px-2 py-1">
                     {loggedUser?.type === PROFESSOR_ACCOUNT &&
                         <Button className="text-white fw-bold" variant="info" onClick={() => setDueDateShow(true)}>Set general due date</Button>
                     }
+                    </li>
+                    <li className="nav-item">
                     <Modal show={dueDateShow} onHide={() => setDueDateShow(false)}>
                         <Modal.Header closeButton>
                             <Modal.Title>Choose general due date</Modal.Title>
@@ -166,18 +178,26 @@ const NavBar = () => {
                             </Button>
                         </Modal.Footer>
                     </Modal>
+                    </li>
+                    </Nav>
 
-
-
-                </Nav>
-                <Navbar.Collapse className="justify-content-end">
-                    <Navbar.Brand>
-                        <span className="fw-bold">Signed in as: </span><span className="text-warning fw-bold">{loggedUser?.lastName + " " + loggedUser?.firstName + " " + alias}</span>
-                    </Navbar.Brand>
+           
+                <li className="nav-item">
+                <Navbar.Collapse className="navbar-text ml-auto">
+                    <Navbar.Brand className='navbar navbar-right'>
+                        <span className="fw-bold">Signed in as: </span>
+                        <span className="text-warning fw-bold">{loggedUser?.lastName + " " + loggedUser?.firstName + " " + alias}</span>
                     <Button variant='warning' className='text-white fw-bold' onClick={() => { logOutUSer(); window.location.reload(false); }}>Logout</Button>
+                    </Navbar.Brand>
                 </Navbar.Collapse>
+                </li>
+                </ul>
+                </div>
+               
             </Container>
+
         </Navbar >
+
     )
 }
 
