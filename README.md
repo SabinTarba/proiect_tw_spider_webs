@@ -159,8 +159,7 @@ get all the tasks for a project defined by the projectId. Each project has an ex
 <br><br>
 *******
 [DE FACUT DATA VIITOARE]: 
-1. Trebuie sa facem pagina pentru a acorda notele
-2. Dupa ce se termina perioada de jurizare (globalDueDate al profesorului + 3 zile din sistem) atunci sa-i apara profesorului un buton in pagina de List of teams care sa calculeze punctajele. Dupa ce este apasata acest buton, daca punctajele au fost calculate cu succes, sa dispara si sa apara alt buton care deschide un modal unde se poate vedea un tabel de genul:
-Team name | No. students | Project name | Team leader (name) | Grade | Professor name
-si tot aici va fi disponibil un buton pentru generare PDF cu acest tabel.
-3. Sa mai lucram la layout-uri (distanta dintre cele 2 butoane la profesor) + DACA VREM SA FACEM RESPONSIVE TREBUIE SA SCHIMBAM CU TOTUL NAVBAR UL SI SA-L FACEM RESPONSIVE
+1. Sa apara alt buton care deschide un modal unde se poate vedea un tabel de genul:
+Team name | No. students | Project name | Team leader (name) | Final grade
+si tot aici va fi disponibil un buton pentru generare PDF cu acest tabel si alte info.
+

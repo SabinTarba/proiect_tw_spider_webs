@@ -131,7 +131,7 @@ const ProjectTasks = () => {
                                                 <Col className="col-md-2 mt-3 align-items-center d-flex justify-content-center">
 
                                                     {
-                                                        new Date() <= new Date(task.dueDate)
+                                                        new Date() <= new Date(task.dueDate) && new Date() <= new Date(professor?.generalDueDate)
                                                         &&
                                                         <Button variant="success" onClick={() => handleSubmit(task.taskNumber - 1)}>
                                                             Save progress for task {task.taskNumber}
@@ -140,7 +140,7 @@ const ProjectTasks = () => {
                                                     }
 
                                                     {
-                                                        new Date() > new Date(task.dueDate)
+                                                        (new Date() > new Date(task.dueDate) || new Date() > new Date(professor?.generalDueDate))
                                                         &&
                                                         <Alert message={"The due date has passed!"} bgColor={"red"} />
 

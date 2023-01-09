@@ -336,7 +336,7 @@ app.put(`/${STUDENT_API_BASE_PATH}/auth/changePassword`, (req, res) => {
 
 
 /*
-   API REQUEST FOR GENERATE TEAMS
+   API REQUEST FOR GENERATE TEAMS & GENERATE FINAL GRADES
 */
 
 const teamNameList = ["Ain't Nothing But a Work Crew", "Weekend Warriors", "The Avengers", "Team Canada", "We Are The Champions", "Bright Reds", "We Will Smash You"];
@@ -408,10 +408,6 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async 
                 studentsExcluded.push(students[j].id);
             }
 
-            console.log(lastTeamId);
-            console.log(studentsExcluded);
-
-
             for (let i = 0; i < students.length; i++) {
                 if (!studentsExcluded.includes(students[i].id)) {
                     Jury.create({ studentId: students[i].id, teamId: lastTeamId })
@@ -432,6 +428,79 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateTeams/:professorId/:option`, async 
 }
 
 )
+
+
+app.get(`/${PROFESSOR_API_BASE_PATH}/generateFinalGrades/:professorId/`, async (req, res) => {
+
+    try {
+        const professorId = req.params.professorId;
+
+        let teamIds = [];
+        (await Team.findAll({ where: { professorId: professorId } })).map(team => teamIds.push(team.id));
+
+
+
+        for (let i = 0; i < teamIds.length; i++) {
+
+            let grades = [];
+            (await Jury.findAll({
+                where: {
+                    teamId: teamIds[i]
+                }
+            })).map(row => grades.push(row.grade));
+
+
+
+            const gradesWithNullsRemoved = grades.filter(grade => grade !== null);
+
+
+            let finalGrade = null;
+
+            if (gradesWithNullsRemoved.length > 2) {
+                if (!isNaN(max) && !isNaN(min)) {
+
+                    const max = Math.max(...gradesWithNullsRemoved);
+                    const min = Math.min(...gradesWithNullsRemoved);
+
+                    const filteredGrades = gradesWithNullsRemoved.filter(grade => grade !== min && grade !== max);
+
+                    const sum = filteredGrades.reduce((prev, curr) => prev + curr, 0);
+
+                    finalGrade = sum / filteredGrades.length;
+                }
+                else {
+                    finalGrade = 0;
+                }
+            }
+            else {
+
+                const sum = gradesWithNullsRemoved.reduce((prev, curr) => prev + curr, 0);
+                finalGrade = sum / gradesWithNullsRemoved.length;
+            }
+
+
+            Project.update(
+                {
+                    grade: finalGrade
+                },
+                {
+                    where: { teamId: teamIds[i] }
+                }
+            )
+
+        }
+
+        res.send({ status: "SUCCESS" });
+    }
+    catch (ex) {
+        console.log(ex)
+        res.send({ error: ex })
+    }
+
+
+
+
+})
 
 
 
@@ -471,11 +540,20 @@ app.delete(`/${TEAM_API_BASE_PATH}/professor/:professorId`, async (req, res) => 
         listOfTeamIDs.push(team.id);
 
 
+
+    Project.destroy({
+        where: {
+            teamId: { [Op.in]: listOfTeamIDs }
+        }
+    })
+
+
     Jury.destroy({
         where: {
             teamId: { [Op.in]: listOfTeamIDs }
         }
     })
+
 
     Team.destroy({
         where: {
@@ -577,10 +655,23 @@ app.get(`/${PROJECT_API_BASE_PATH}/team/:teamId`, (req, res) => {
         Project.findOne({ where: { teamId: teamId }, include: [{ model: Task }] }).then((project) => project != null ? res.send(project) : res.send({ status: "No data found!" }));
     }
     catch (ex) {
-        console.log(ex);
         res.send({ error: ex })
     }
 
+})
+
+
+app.post(`/${PROJECT_API_BASE_PATH}/saveGradeForProject`, (req, res) => {
+    const { grade, id } = req.body;
+
+    Project.update({
+        grade: grade,
+    },
+        {
+            where: {
+                id: id,
+            }
+        }).then(arrayResponse => res.send({ rowsAffected: arrayResponse[0] }));
 })
 
 
@@ -625,6 +716,53 @@ app.put(`/${TASK_API_BASE_PATH}/saveProgress`, (req, res) => {
         res.send({ error: ex });
     }
 });
+
+
+
+app.get(`/${TASK_API_BASE_PATH}/tasksForGrading/:studentId`, async (req, res) => {
+    const studentId = req.params.studentId;
+
+    let teamIds = [];
+    (await Jury.findAll({ where: { studentId: studentId } })).map(jury => teamIds.push(jury.teamId));
+
+
+    let projectIds = [];
+    for (let i = 0; i < teamIds.length; i++)
+        (await Project.findAll({ where: { teamId: teamIds[i] } })).map(project => projectIds.push(project.id));
+
+
+    await Project.findAll(
+        { include: [{ model: Task }] },
+
+    ).then(projectsTasks => {
+        res.send(projectsTasks.filter(project => projectIds.includes(project.id)))
+    })
+
+})
+
+
+
+/*
+   API -> Entity: Jury
+*/
+
+const JURY_API_BASE_PATH = 'juries';
+
+app.post(`/${JURY_API_BASE_PATH}/grade`, (req, res) => {
+    const { studentId, teamId, grade } = req.body;
+
+    Jury.update(
+        { grade: grade },
+        {
+            where: {
+                studentId: studentId,
+                teamId: teamId
+            }
+        }
+    ).then(arrayResponse => res.send({ rowsAffected: arrayResponse[0] }));
+})
+
+
 
 
 /*

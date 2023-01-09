@@ -25,6 +25,10 @@ class PROJECT_SERVICE {
         return await axios.get(`${PROJECT_API_BASE_PATH}/team/${teamId}`);
     }
 
+    async gradeProject(grade, projectId) {
+        return await axios.post(`${PROJECT_API_BASE_PATH}/saveGradeForProject`, { grade: grade, id: projectId })
+    }
+
 }
 
 

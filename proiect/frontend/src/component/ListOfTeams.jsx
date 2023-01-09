@@ -80,30 +80,47 @@ const ListOfTeams = () => {
     }, [loggedUser?.id])
 
 
+    const generateFinalGrades = () => {
+        PROFESSOR_SERVICE.generateFinalGrade(loggedUser?.id).then(res => {
+            if (res.status === 200 && res.data.status === "SUCCESS")
+                alert("Final grades have been generated!");
+        })
+    }
+
 
     return (
         <Container className="mt-5">
-            <Button className={`mb-5 ${hasTeams ? "" : "d-none"}`} variant="danger" size={25} onClick={() => setShowDialogDeleteAllTeams(true)} cursor="pointer">Delete all teams</Button>
 
-            {
-                showDialogDeleteAllTeams &&
-                <Modal show={showDialogDeleteAllTeams} onHide={() => setShowDialogDeleteAllTeams(false)}>
-                    <Modal.Header closeButton>
-                        <Modal.Title>Confirmation dialog</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body><p>Are you sure you want to delete all teams?</p>
-                        <p>A new team generation will be required after that!</p></Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="secondary" onClick={() => setShowDialogDeleteAllTeams(false)}>
-                            No
-                        </Button>
-                        <Button variant="danger" onClick={() => { setShowDialogDeleteAllTeams(false); deleteAllTeams(loggedUser?.id) }}>
-                            Yes
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            }
+            <Container className="mb-4 d-flex justify-content-between">
+                <Button className={`${hasTeams ? "" : "d-none"}`} variant="danger" size={25} onClick={() => setShowDialogDeleteAllTeams(true)} cursor="pointer">Delete all teams</Button>
 
+                {
+                    showDialogDeleteAllTeams &&
+                    <Modal show={showDialogDeleteAllTeams} onHide={() => setShowDialogDeleteAllTeams(false)}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>Confirmation dialog</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body><p>Are you sure you want to delete all teams?</p>
+                            <p>A new team generation will be required after that!</p></Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={() => setShowDialogDeleteAllTeams(false)}>
+                                No
+                            </Button>
+                            <Button variant="danger" onClick={() => { setShowDialogDeleteAllTeams(false); deleteAllTeams(loggedUser?.id) }}>
+                                Yes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                }
+
+                {
+                    new Date() > new Date().setDate(new Date(loggedUser?.generalDueDate).getDate() + 3) && hasTeams
+                    &&
+                    <Button className="text-white" variant="warning" onClick={() => generateFinalGrades()}>Generate final grades</Button>
+
+                }
+
+            </Container>
 
             {
                 hasTeams &&

@@ -37,6 +37,10 @@ class PROFESSOR_SERVICE {
         return await axios.post(`${PROFESSOR_API_BASE_PATH}/config/setGeneralDueDate`, requestBody);
     }
 
+    async generateFinalGrade(professorId) {
+        return await axios.get(`${PROFESSOR_API_BASE_PATH}/generateFinalGrades/${professorId}`)
+    }
+
 
 }
 

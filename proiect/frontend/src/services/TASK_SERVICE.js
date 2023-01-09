@@ -13,6 +13,10 @@ class TASK_SERVICE {
         return await axios.put(`${TASK_API_BASE_PATH}/saveProgress`, requestBody);
     }
 
+    async getProjectsAndTasksForGrading(studentId) {
+        return await axios.get(`${TASK_API_BASE_PATH}/tasksForGrading/${studentId}`);
+    }
+
 }
 
 

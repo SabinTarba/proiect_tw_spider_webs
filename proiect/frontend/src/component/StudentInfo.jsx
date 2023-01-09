@@ -41,10 +41,12 @@ const StudentInfo = () => {
         <Container className="mt-5 h4">
             <h1 className="mb-5 fw-bold">General Information</h1>
             <ul>
+                <li>Student id: <span className="text-info">{loggedUser?.id}</span></li>
                 <li>Last name: <span className="text-info">{loggedUser?.lastName}</span></li>
                 <li>First name: <span className="text-info">{loggedUser?.firstName}</span></li>
                 <li>Series: <span className="text-info">{loggedUser?.series}</span></li>
                 <li>Class: <span className="text-info">{loggedUser?.class}</span></li>
+                <li>Email: <span className="text-info">{loggedUser?.email}</span></li>
                 <li>Professor: <span className="text-info">{professor?.lastName + " " + professor?.firstName}</span></li>
                 <li>Team leader: <span className="text-info">{loggedUser?.id === team.leaderId ? "Yes! Due date for tasks can be changed once. After that, you won't be able to update it anymore. If the due date is reached, then you won't be able to register the progress for task as well!" : "No"}</span></li>
                 <li>Team number: <span className="text-info">{loggedUser?.teamId === null ? "You don't belong to any team! Your professor will generate randomly the teams when all students are registered." : loggedUser?.teamId}</span></li>
