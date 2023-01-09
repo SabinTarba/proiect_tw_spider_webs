@@ -11,7 +11,6 @@ class JURY_SERVICE {
 
 }
 
-
 export default new JURY_SERVICE();
 
 
