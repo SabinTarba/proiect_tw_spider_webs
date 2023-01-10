@@ -457,10 +457,11 @@ app.get(`/${PROFESSOR_API_BASE_PATH}/generateFinalGrades/:professorId/`, async (
             let finalGrade = null;
 
             if (gradesWithNullsRemoved.length > 2) {
+                
+                const max = Math.max(...gradesWithNullsRemoved);
+                const min = Math.min(...gradesWithNullsRemoved);
+                
                 if (!isNaN(max) && !isNaN(min)) {
-
-                    const max = Math.max(...gradesWithNullsRemoved);
-                    const min = Math.min(...gradesWithNullsRemoved);
 
                     const filteredGrades = gradesWithNullsRemoved.filter(grade => grade !== min && grade !== max);
 
@@ -766,6 +767,6 @@ app.post(`/${JURY_API_BASE_PATH}/grade`, (req, res) => {
 
 
 /*
-   PORNIRE SERVER -> PORT: 8080
+   START SERVER -> PORT: 8080
 */
 app.listen(8080);
